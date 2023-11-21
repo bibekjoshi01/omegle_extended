@@ -2,9 +2,10 @@
 @use "../../styles/variables" as *;
 
 .footer {
-  color: #393939;
-  padding: 20px;
-  padding: 0rem 5rem;
+  color: #666666;
+  padding: 1rem 5rem;
+  font-size: 1rem;
+  text-align: center;
 
   .separator {
     border: 0;
@@ -15,23 +16,28 @@
 
   .footerContent {
     @include flex(center, space-between, null, null);
+    flex-wrap: wrap;
 
     .left {
       flex: 1;
-
-      p {
-        font-size: 0.8rem;
-      }
+      text-align: left;
+      margin-bottom: 10px;
     }
 
     .right {
       display: flex;
       gap: 20px;
+      flex: 1;
+      justify-content: flex-end;
 
       a {
-        color: #393939;
+        color: #666666;
         text-decoration: none;
       }
+    }
+
+    @media (max-width: 765px) {
+      @include flex(center, center, column, null);
     }
   }
 }

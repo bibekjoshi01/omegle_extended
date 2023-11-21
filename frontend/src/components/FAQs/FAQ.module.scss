@@ -1,0 +1,26 @@
+.main {
+  padding: 5rem;
+}
+
+.faqList {
+  display: grid;
+  gap: 2rem;
+}
+
+.faqItem {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .question {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #000;
+  }
+
+  .answer {
+    font-size: 1rem;
+    color: #747474;
+  }
+}

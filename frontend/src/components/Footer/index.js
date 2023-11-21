@@ -8,11 +8,14 @@ function Footer() {
       <div className={styles.footerContent}>
         <div className={styles.left}>
           <p>
-            &copy;Omegle.uk.com 2021. We are not affiliated with Omegle.com LLC.
+            &copy; {new Date().getFullYear()} Zingo.com. All Rights Reserved.
           </p>
         </div>
         <div className={styles.right}>
+          <a href="#">About</a>
           <a href="#">Contact</a>
+          <a href="#">Terms and Conditions</a>
+          <a href="#">Privacy</a>
         </div>
       </div>
     </footer>

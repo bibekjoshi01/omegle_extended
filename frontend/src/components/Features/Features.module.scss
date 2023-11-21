@@ -2,8 +2,7 @@
 @use "../../styles/variables" as *;
 
 .main {
-  background-color: rgb(245, 245, 245);
-  padding: 8rem 5rem;
+  padding: 5rem;
 
   .grid {
     display: grid;
@@ -17,7 +16,7 @@
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
     .icon {
       margin-bottom: 15px;
