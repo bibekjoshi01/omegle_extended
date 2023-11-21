@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./FAQ.module.scss";
-
+import { FaAngleUp } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 function FAQ() {
   const faqs = [
     {
@@ -17,11 +18,16 @@ function FAQ() {
   ];
 
   const [expandedIndex, setExpandedIndex] = useState(null);
+  const caretRef = useRef();
 
   const toggleAnswer = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+    const caret = caretRef.current;
+    if(caret){
+      caret.style.transform = expandedIndex === index ? "rotate(0deg)" : "rotate(180deg)";
+    }
   };
-
+  
   return (
     <section className={styles.main}>
       <div className={styles.faqList}>
@@ -32,6 +38,8 @@ function FAQ() {
               onClick={() => toggleAnswer(index)}
             >
               {faq.question}
+              <FaAngleDown className={styles.caret} ref={caretRef}/>
+              {/* {expandedIndex === index ? <FaAngleUp className={styles.caret}/> : <FaAngleDown className={styles.caret}/>} */}
             </div>
             {expandedIndex === index && (
               <p className={styles.answer}>{faq.answer}</p>
