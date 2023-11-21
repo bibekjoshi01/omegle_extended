@@ -1,18 +1,17 @@
 import React from "react";
-import banner from "../../assets/banner.png";
+import banner from "../../assets/banner.jpg";
 import styles from "./HeroSection.module.scss";
-import Header from "../Header/index";
+
 const index = () => {
   return (
     <>
-      <Header />
       <section className={styles.main}>
         <div className={styles.container}>
           <div className={styles.left}>
-            <h1>Chat With Anyone & Anywhere</h1>
+            <h1>ZINGO: Chat with anyone & anywhere.</h1>
             <p className={styles.description}>
-              Google Meet is one service for secure, high-quality video meetings
-              and calls available for everyone, on any device.
+              Say goodbye to limitations and hello to a new era of universal
+              connectivity. Join the revolution now!
             </p>
             <a href=" " className={styles.talkBtn}>
               Talk To Strangers
