@@ -1,12 +1,17 @@
-import React from 'react'
-import styles from './HomePage.module.scss'
-import Hero from '../HeroSection/index'
+import React from "react";
+import styles from "./HomePage.module.scss";
+import Hero from "../HeroSection/index";
+import Features from "../Features";
+import Footer from "../Footer";
+
 const index = () => {
   return (
     <div className={styles.main}>
-        <Hero/>
+      <Hero />
+      <Features />
+      <Footer />F
     </div>
-  )
-}
+  );
+};
 
-export default index
+export default index;

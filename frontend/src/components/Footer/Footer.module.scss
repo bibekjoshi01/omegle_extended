@@ -1,0 +1,37 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.footer {
+  color: #393939;
+  padding: 20px;
+  padding: 0rem 5rem;
+
+  .separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 20px 0;
+  }
+
+  .footerContent {
+    @include flex(center, space-between, null, null);
+
+    .left {
+      flex: 1;
+
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    .right {
+      display: flex;
+      gap: 20px;
+
+      a {
+        color: #393939;
+        text-decoration: none;
+      }
+    }
+  }
+}

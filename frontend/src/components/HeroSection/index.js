@@ -1,6 +1,7 @@
 import React from "react";
 import banner from "../../assets/banner.jpg";
 import styles from "./HeroSection.module.scss";
+
 const index = () => {
   return (
     <section className={styles.main}>
