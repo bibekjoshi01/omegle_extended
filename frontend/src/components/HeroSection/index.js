@@ -1,31 +1,29 @@
 import React from "react";
-import banner from "../../assets/banner.jpg";
+import banner from "../../assets/banner.png";
 import styles from "./HeroSection.module.scss";
-
+import Header from "../Header/index";
 const index = () => {
   return (
-    <section className={styles.main}>
-      <div>
-        <h1 className={styles.heading}>Talk To Strangers</h1>
-      </div>
-      <div className={styles.container}>
-        <div className={styles.left}>
-          <img src={banner} alt="Banner" className={styles.banner} />
+    <>
+      <Header />
+      <section className={styles.main}>
+        <div className={styles.container}>
+          <div className={styles.left}>
+            <h1>Chat With Anyone & Anywhere</h1>
+            <p className={styles.description}>
+              Google Meet is one service for secure, high-quality video meetings
+              and calls available for everyone, on any device.
+            </p>
+            <a href=" " className={styles.talkBtn}>
+              Talk To Strangers
+            </a>
+          </div>
+          <div className={styles.right}>
+            <img src={banner} alt="Banner" className={styles.banner} />
+          </div>
         </div>
-        <div className={styles.right}>
-          <h1>Chat Online</h1>
-          <p className={styles.description}>
-            Omegle is a Great Spot to meet people online. Where a stranger can
-            Initiate Video Conversation with another stranger at random over the
-            internet using webcam. Download Omegle App for mobile, Start
-            chatting instantly without Registration.
-          </p>
-          <a href=" " className={styles.talkBtn}>
-            Talk To Strangers
-          </a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
