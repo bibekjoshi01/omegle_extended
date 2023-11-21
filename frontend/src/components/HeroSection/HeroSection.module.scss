@@ -4,30 +4,19 @@
 // Import mixins and variables if needed
 
 .main {
-  @include flex(center, center, column, null);
-  height: 100vh;
+  @include flex(center, flex-start, column, null);
+  padding: 5rem;
   color: #000;
 
-  .heading {
-    text-align: center;
-    @include font(helvetica, 3rem, 700);
-    margin-bottom: 3rem;
-    color: #656565;
-    padding: 1rem 5rem;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), -2px -2px 4px rgba(0, 0, 0, 0.1);
-  }
-
   .container {
-    @include flex(center, space-between, null, 5rem);
+    @include flex(flex-start, space-between, null, 5rem);
     margin: 0 auto;
-    max-width: 70rem;
-    padding: 2rem;
-    // border: 2px solid black;
-    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-    .left {
+    .right {
       width: 50%;
-
+      box-shadow:0 0 3px #ccc;
+      padding: 1.5rem;
+      border-radius: 5px;
       .banner {
         max-width: 100%;
         height: auto;
@@ -36,12 +25,14 @@
       }
     }
 
-    .right {
+    .left {
       text-align: center;
       width: 50%;
+      position: relative;
 
       h1 {
-        @include font(helvetica, 2.5rem, 700);
+        @include font(helvetica, 2.5rem, 600);
+        text-align: left;
         margin-bottom: 1rem;
         text-transform: uppercase;
         color: #3498db;
@@ -51,6 +42,8 @@
 
       .description {
         margin-bottom: 2rem;
+        text-align: left;
+        font-size: 1.3rem;
       }
 
       .talkBtn {
@@ -59,9 +52,14 @@
         padding: 1rem 2rem;
         text-decoration: none;
         color: white;
-        background-color: #3498db;
-        border-radius: 50px;
+        // background-color: #3498db;
+        background-color: #19b198;
+        // background-color: #F9496B;
+
+        border-radius: 5px;
         transition: background-color 0.3s ease;
+        position: absolute;
+        left: 0;
 
         &:hover {
           background-color: #2980b9;

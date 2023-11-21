@@ -9,7 +9,7 @@ const index = () => {
     <div className={styles.main}>
       <Hero />
       <Features />
-      <Footer />F
+      <Footer />
     </div>
   );
 };
