@@ -1,0 +1,27 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+
+.main {
+    @include flex(center,center,column,null);
+    height: 100vh;
+
+    .heading {
+        text-align: center;
+        @include font(helvetica,3rem,700)
+    }
+
+    .container {
+        @include flex(center, space-between, null, 5rem);
+        margin: 0 auto;
+        width: 70rem;
+        padding: 1rem 5rem;
+        border: 2px solid black;
+
+        .left {
+            .banner {
+                height: 500px;
+                width: 500px;
+            }
+        }
+    }
+}
