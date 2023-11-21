@@ -1,0 +1,43 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.footer {
+  color: #666666;
+  padding: 1rem 5rem;
+  font-size: 1rem;
+  text-align: center;
+
+  .separator {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, #ccc, transparent);
+    margin: 20px 0;
+  }
+
+  .footerContent {
+    @include flex(center, space-between, null, null);
+    flex-wrap: wrap;
+
+    .left {
+      flex: 1;
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    .right {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+      justify-content: flex-end;
+
+      a {
+        color: #666666;
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 765px) {
+      @include flex(center, center, column, null);
+    }
+  }
+}

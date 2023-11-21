@@ -1,0 +1,42 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.main {
+  padding: 5rem;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    .icon {
+      margin-bottom: 15px;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+
+    .title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #000;
+      font-weight: 400;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #747474;
+    }
+  }
+}
