@@ -1,0 +1,30 @@
+@mixin flex($alignItem, $justifyContent, $direction, $gap) {
+  display: flex;
+  align-items: $alignItem;
+  justify-content: $justifyContent;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin position(
+  $position,
+  $top,
+  $bottom,
+  $left,
+  $right,
+  $translateX,
+  $translateY
+) {
+  position: $position;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
+  transform: translate($translateX, $translateY);
+}
+
+@mixin font($family, $size, $weight) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+}
