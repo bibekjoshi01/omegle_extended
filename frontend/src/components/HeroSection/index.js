@@ -13,8 +13,9 @@ const index = () => {
         </h1>
         <div className={styles.description}>
           <p>
-            Say goodbye to limitations and hello to a new era of universal
-            connectivity. Join the revolution now!
+            More than an app; it's the doorway to a world of friendships
+            waiting to be discovered. Start chatting, start connecting, start
+            your Zingo journey today!
           </p>
         </div>
         <div className={styles.btn}>

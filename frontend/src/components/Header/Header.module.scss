@@ -15,6 +15,7 @@
   }
 
   .talkBtn {
+    @include font(inherit, 1.5rem, 600);
     padding: 1rem 3rem;
     text-decoration: none;
     color: #fff;
