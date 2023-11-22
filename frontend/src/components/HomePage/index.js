@@ -4,10 +4,12 @@ import Hero from "../HeroSection/index";
 import Features from "../Features";
 import Footer from "../Footer";
 import FAQs from "../FAQs";
+import Header from "../Header/index";
 
 const index = () => {
   return (
     <div className={styles.main}>
+      <Header />
       <Hero />
       <Features />
       <FAQs />
