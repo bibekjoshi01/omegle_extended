@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import logo from "../../assets/logo.jpeg";
+import logo from "../../../assets/logo.jpeg";
 
 const index = () => {
   return (
