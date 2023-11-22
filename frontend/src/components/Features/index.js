@@ -5,39 +5,21 @@ function Features() {
   const featuresData = [
     {
       icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/chat-app.svg",
-      title: "Talk To Strangers",
+      title: "Chat Across Continents",
       description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
+        "Connect with intriguing individuals worldwide and let the magic of chat bring new friendships to life.",
     },
     {
       icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/video-chat.svg",
-      title: "Text and Video Chat",
+      title: "See Beyond Words",
       description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
+        "Connect not just through words but with the power of face-to-face conversations.",
     },
     {
       icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/student.svg",
-      title: "Interact with College Students",
+      title: "Zingo Campus: Student Network",
       description:
-        "Using college email address Omegle lets you meet other college students.",
-    },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/chat-app.svg",
-      title: "Talk To Strangers",
-      description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
-    },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/video-chat.svg",
-      title: "Text and Video Chat",
-      description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
-    },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/student.svg",
-      title: "Interact with College Students",
-      description:
-        "Using college email address Omegle lets you meet other college students.",
+        "Share experiences, make lasting connections within the vibrant Zingo student community.",
     },
   ];
 

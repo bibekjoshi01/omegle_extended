@@ -1,11 +1,16 @@
-import Home from './components/HomePage';
+import Home from "./components/HomePage";
+import Layout from "./components/Layout";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
-const App = ()=> {
+const App = () => {
   return (
-    <>
-      <Home/>
-    </>
+    <Provider store={store}>
+      <Layout>
+        <Home />
+      </Layout>
+    </Provider>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,31 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+
+.header {
+  @include flex(center, space-between, null, null);
+  @include font(inherit, 1.6rem, lighter);
+  height: auto;
+  padding: 0.8rem 5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  .logo {
+    width: 15rem;
+    height: auto;
+    cursor: pointer;
+  }
+
+  .talkBtn {
+    @include font(inherit, 1.5rem, 600);
+    padding: 1rem 3rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: $secondary-light;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $primary-light;
+      outline: none;
+    }
+  }
+}
