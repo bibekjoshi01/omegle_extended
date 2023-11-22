@@ -3,11 +3,10 @@
 
 .header {
     @include flex(center, space-between, null, null);
+    @include font(inherit, 1.6rem, lighter);
     height: auto;
-    padding: 1rem 1.8rem 0 1.8rem;
-    @include font(helvetica, 1.6rem, 600);
+    padding: 0.8rem 5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-   
 
     .logo {
         width: 12rem;
@@ -15,17 +14,17 @@
     }
 
     .talkBtn {
-        @include font(inherit, 1rem, 700);
+        @include font(inherit, 1rem, 600);
         display: inline-block;
         padding: 1rem 2rem;
         text-decoration: none;
         color: white;
-        background-color: #3498db;
+        background-color: $secondary-light;
         border-radius: 5px;
         transition: background-color 0.3s ease;
 
         &:hover {
-            background-color: #2980b9;
+            background-color: $primary-light;
             outline: none;
         }
     }
