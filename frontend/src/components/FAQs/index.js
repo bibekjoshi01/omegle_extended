@@ -48,7 +48,7 @@ function FAQ() {
   return (
     <section className={styles.main}>
       <div className={styles.faqList}>
-       {/* <h1>FAQS</h1> */}
+       <h1>FAQS</h1>
         {faqs.map((faq, index) => (
           <div key={index} className={styles.faqItem}>
             <div
