@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, forwardRef } from "react";
 import styles from "./FAQ.module.scss";
 import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
+
 function FAQ() {
   const faqs = [
     {
@@ -18,16 +19,25 @@ function FAQ() {
   ];
 
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const caretRef = useRef();
+
+  // Use an object to store refs
+  const caretRefs = useRef({});
 
   const toggleAnswer = (index) => {
+    const CurrentCaret = caretRefs.current[index];
+    const PreviousCaret = caretRefs.current[expandedIndex];
+    console.log(PreviousCaret);
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
-    const caret = caretRef.current;
-    if(caret){
-      caret.style.transform = expandedIndex === index ? "rotate(0deg)" : "rotate(180deg)";
+    if(PreviousCaret){
+      PreviousCaret.style.transform = expandedIndex===index ?"rotate(-180deg)":"rotate(0deg)";
+      PreviousCaret.style.transition = "0.2s ease-in";
+    }
+    if (CurrentCaret) {
+      CurrentCaret.style.transform =expandedIndex===index ? "rotate(0deg)":"rotate(180deg)";
+      CurrentCaret.style.transition ="0.2s ease-in";
     }
   };
-  
+
   return (
     <section className={styles.main}>
       <div className={styles.faqList}>
@@ -37,9 +47,10 @@ function FAQ() {
               className={styles.question}
               onClick={() => toggleAnswer(index)}
             >
-              {faq.question}
-              <FaAngleDown className={styles.caret} ref={caretRef}/>
-              {/* {expandedIndex === index ? <FaAngleUp className={styles.caret}/> : <FaAngleDown className={styles.caret}/>} */}
+              <Question
+                ref={(el) => (caretRefs.current[index] = el)}
+                question={faq.question}
+              />
             </div>
             {expandedIndex === index && (
               <p className={styles.answer}>{faq.answer}</p>
@@ -52,3 +63,14 @@ function FAQ() {
 }
 
 export default FAQ;
+
+const Question = forwardRef((props, ref) => {
+  return (
+    <div>
+      {props.question}
+      <div ref={ref} className={styles.caret}>
+        <FaAngleDown className={styles.caret} />
+      </div>
+    </div>
+  );
+});
