@@ -17,10 +17,17 @@
     font-size: 1.5rem;
     margin-bottom: 10px;
     color: #000;
+    position: relative;
+    cursor: pointer;
+    .caret{
+      position: absolute;
+      right: 0;
+    }
   }
 
   .answer {
     font-size: 1rem;
     color: #747474;
+    cursor: pointer;
   }
 }
