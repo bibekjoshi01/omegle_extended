@@ -1,83 +1,76 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/variables" as *;
 
-.main {
-  @include flex(center, center, null, null);
-  margin-top: 5rem;
+.container {
+  @include flex(flex-start, center, null, 5rem);
   padding: 5rem;
-  color: #000;
-  font-family: "Montserrat", sans-serif;
+  margin: 5rem auto;
+  max-width: 120rem;
 
-  .container {
+  .right {
+    width: 50%;
     @include flex(flex-start, center, null, 5rem);
-    max-width: 120rem;
-    margin: 0 auto;
 
-    .right {
-      width: 50%;
-      @include flex(flex-start, center, null, 5rem);
+    .banner {
+      padding: 2rem;
+      box-shadow: 0 0 3px #ccc;
+      border-radius: 4px;
+      max-width: 50rem;
+      height: auto;
+    }
+  }
 
-      .banner {
-        padding: 2rem;
-        box-shadow: 0 0 3px #ccc;
-        border-radius: 4px;
-        max-width: 50rem;
-        height: auto;
+  .left {
+    width: 50%;
+    text-align: center;
+    position: relative;
+
+    h1 {
+      @include font(inherit, 5rem, lighter);
+      text-align: left;
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+      color: #000;
+
+      span {
+        font-weight: bold;
       }
     }
 
-    .left {
-      width: 50%;
-      text-align: center;
-      position: relative;
-
-      h1 {
-        @include font(inherit, 5rem, lighter);
+    .description {
+      p {
         text-align: left;
-        margin-bottom: 1rem;
-        text-transform: capitalize;
-        color: #000;
-
-        span {
-          font-weight: bold;
-        }
+        font-size: 1.8rem;
+        line-height: 2.5rem;
+        color: rgb(88, 88, 88);
       }
+    }
 
-      .description {
-        p {
-          text-align: left;
-          font-size: 1.8rem;
-          line-height: 2.5rem;
-          color: rgb(88, 88, 88);
+    .btn {
+      .talkBtn {
+        @include flex(center, center, null, null);
+        @include font(inherit, 1.5rem, 600);
+        position: absolute;
+        margin-top: 5rem;
+        padding: 1.5rem 3rem;
+        text-decoration: none;
+        color: #fff;
+        background-color: $secondary-light;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $primary-light;
+          outline: none;
         }
-      }
 
-      .btn {
-        .talkBtn {
-          @include flex(center, center, null, null);
-          @include font(inherit, 1.5rem, 600);
-          position: absolute;
-          margin-top: 5rem;
-          padding: 1.5rem 3rem;
-          text-decoration: none;
-          color: #fff;
-          background-color: $secondary-light;
-          border-radius: 4px;
-          transition: background-color 0.3s ease;
+        .icon {
+          font-size: 2rem;
+          margin-right: 0.5rem;
+        }
 
-          &:hover {
-            background-color: $primary-light;
-            outline: none;
-          }
-
-          .icon {
-            font-size: 2rem;
-            margin-right: 0.5rem;
-          }
-
-          .btnText {
-            margin-left: 0.5rem;
-          }
+        .btnText {
+          margin-left: 0.5rem;
         }
       }
     }
