@@ -14,7 +14,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", BaseDocTemplate, name="base_url"),
     path("api-auth/", include("rest_framework.urls")),
-    path("api/", include("src.chat.urls")),
+    path("api/", include("src.api.urls")),
     path(
         "api/schema/",
         SpectacularAPIView.as_view(),
