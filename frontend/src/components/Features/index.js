@@ -21,24 +21,6 @@ function Features() {
       description:
         "Using college email address Omegle lets you meet other college students.",
     },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/chat-app.svg",
-      title: "Talk To Strangers",
-      description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
-    },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/video-chat.svg",
-      title: "Text and Video Chat",
-      description:
-        "The Internet is full of amazing people, Omegle lets you chat with them.",
-    },
-    {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/student.svg",
-      title: "Interact with College Students",
-      description:
-        "Using college email address Omegle lets you meet other college students.",
-    },
   ];
 
   return (
