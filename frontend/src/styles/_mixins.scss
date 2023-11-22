@@ -28,3 +28,36 @@
   font-size: $size;
   font-weight: $weight;
 }
+
+
+
+// Mixins for media query
+@mixin xs{
+  @media (max-width: 390px) {
+    @content;
+  }
+}
+
+@mixin sm{
+  @media (max-width: 500px) {
+    @content;
+  }
+}
+
+@mixin md{
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin lg{
+  @media (max-width: 1080px) {
+    @content;
+  }
+}
+
+@mixin xl{
+  @media (min-width: 1080px) {
+    @content;
+  }
+}
