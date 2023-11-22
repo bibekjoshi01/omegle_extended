@@ -41,6 +41,7 @@ function FAQ() {
       CurrentCaret.style.transition ="0.5s ease-in-out";
       CurrentCaret.parentNode.parentNode.style.borderBottom ="1.5px solid #000";
       CurrentCaret.parentNode.style.color ="#000";
+      
     }
   };
 
