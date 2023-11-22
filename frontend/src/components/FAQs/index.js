@@ -31,7 +31,7 @@ function FAQ() {
     if(PreviousCaret){
       PreviousCaret.style.transform = expandedIndex===index ?"rotate(-180deg)":"rotate(0deg)";
       PreviousCaret.style.transition = "0.5s ease-in-out";
-      PreviousCaret.parentNode.style.borderBottom ="none";
+      PreviousCaret.parentNode.parentNode.style.borderBottom ="1.5px solid #7e7d7d";
       PreviousCaret.parentNode.style.color ="rgb(40, 40, 40)";
 
 
@@ -39,8 +39,7 @@ function FAQ() {
     if (CurrentCaret) {
       CurrentCaret.style.transform =expandedIndex===index ? "rotate(0deg)":"rotate(180deg)";
       CurrentCaret.style.transition ="0.5s ease-in-out";
-      CurrentCaret.parentNode.style.borderBottom ="1.5px solid #747474";
-      CurrentCaret.parentNode.style.paddingBottom ="12px";
+      CurrentCaret.parentNode.parentNode.style.borderBottom ="1.5px solid #000";
       CurrentCaret.parentNode.style.color ="#000";
       
     }
@@ -49,7 +48,7 @@ function FAQ() {
   return (
     <section className={styles.main}>
       <div className={styles.faqList}>
-       <h1>FAQS</h1>
+       {/* <h1>FAQS</h1> */}
         {faqs.map((faq, index) => (
           <div key={index} className={styles.faqItem}>
             <div
