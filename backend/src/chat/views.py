@@ -27,7 +27,7 @@ class InitializeChatAPIView(APIView):
             data = serializer.validated_data
             
             user_id = data['user_id']
-            user_name = data['user_name']
+            nickname = data['nickname']
 
             # Matching Process will be here
             member1 = user_id
@@ -43,7 +43,7 @@ class InitializeChatAPIView(APIView):
                 chat_room.save()
             else:
                 # No waiting user found, create a new chat room for the current user
-                chat_room = ChatRoom.objects.create(name=user_name, member1=user_id)
+                chat_room = ChatRoom.objects.create(name=nickname, member1=user_id)
                 chat_room.status = 'WAITING'
                 chat_room.save()
 

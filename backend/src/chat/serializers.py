@@ -1,10 +1,17 @@
 from rest_framework import serializers
 from . models import ChatRoom, ChatMessage
 
+GENDERS = (
+    ('MALE', 'Male'),
+    ('FEMALE', 'Female'),
+    ('OTHER', 'Other'),
+)
 
 class InitializeChatSerializer(serializers.Serializer):
     user_id = serializers.CharField(max_length=20)
-    user_name = serializers.CharField(max_length=20)
+    nickname = serializers.CharField(max_length=20)
+    gender = serializers.ChoiceField(choices=GENDERS)
+    interested_gender = serializers.ChoiceField(choices=GENDERS)
 
 
 class ChatMessageSerializer(serializers.ModelSerializer):
