@@ -2,6 +2,8 @@
 @use "../../../styles/variables" as *;
 
 .header {
+  @include flex(center, space-between, null, null);
+  @include position(fixed, 10px, null, 50%, null, -50%, 0);
   max-width: 1200px;
   width: 100%;
   padding: 8px 16px;
@@ -9,14 +11,14 @@
   background: $light;
   border: 1px solid $light;
   box-shadow: 0 0 16px transparent;
-  @include flex(center, space-between, null, null);
-  @include position(fixed, 10px, null, 50%, null, -50%, 0);
   transition: all .3s ease-in-out;
+
   &.scrolled{
     border: 1px solid $grey-200;
     background: rgba(255, 255, 255, .9);
     box-shadow: 0 0 16px rgba($color: #000000, $alpha: .1);
   }
+
   z-index: 9;
   .logo {
     width: 15rem;

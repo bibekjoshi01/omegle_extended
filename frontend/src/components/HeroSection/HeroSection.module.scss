@@ -2,28 +2,32 @@
 @use "../../styles/variables" as *;
 
 .container {
+  @include flex(flex-start, center, row, null);
   padding: 10px;
   margin: 150px auto 50px;
   max-width: 120rem;
-  @include flex(flex-start, center, row, null);
-  @include lg{
+
+  @include lg {
     flex-direction: column;
+    margin: 10rem 1.5rem;
+    gap: 5rem;
   }
-  
+
   .right {
     width: 50%;
     @include flex(flex-start, flex-end, row, 50px);
-    @include lg{
+    @include lg {
       width: 100%;
       margin-top: 100px;
     }
+
     .banner {
       padding: 2rem;
       box-shadow: 0 0 3px #ccc;
       border-radius: 4px;
       max-width: 50rem;
       height: auto;
-      @include lg{
+      @include lg {
         max-width: 100%;
       }
     }
@@ -33,7 +37,7 @@
     width: 50%;
     text-align: center;
     position: relative;
-    @include lg{
+    @include lg {
       width: 100%;
     }
     h1 {
@@ -42,12 +46,12 @@
       margin-bottom: 10px;
       text-transform: capitalize;
       color: $dark;
-      
+
       span {
         font-weight: $weight-bold;
       }
     }
-    
+
     .description {
       p {
         text-align: left;
