@@ -1,7 +1,10 @@
 .main {
   padding: 5rem;
-  h1{
-    font-size: 1.5rem;
+  max-width: 120rem;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 2rem;
   }
 }
 
@@ -14,14 +17,16 @@
   background-color: #fff;
   padding: 0.5rem;
   border-radius: 8px;
+
   .question {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 10px;
     color: rgb(40, 40, 40);
     position: relative;
     cursor: pointer;
-    .caret{
+    
+    .caret {
       position: absolute;
       right: 0;
       cursor: pointer;
@@ -30,7 +35,7 @@
   }
 
   .answer {
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding-top: 5px;
     color: #747474;
     cursor: pointer;

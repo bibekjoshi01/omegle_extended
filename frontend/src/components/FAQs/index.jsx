@@ -1,6 +1,5 @@
 import React, { useRef, useState, forwardRef } from "react";
 import styles from "./FAQ.module.scss";
-import { FaAngleUp } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 
 function FAQ() {
@@ -15,7 +14,16 @@ function FAQ() {
       answer:
         "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
     },
-    // Add more FAQs as needed
+    {
+      question: "Why do we use it?",
+      answer:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    },
+    {
+      question: "Why do we use it?",
+      answer:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    },
   ];
 
   const [expandedIndex, setExpandedIndex] = useState(null);
