@@ -3,10 +3,11 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import styles from "./Starter.module.scss";
 import male from "../../assets/male.png";
 import female from "../../assets/female.png";
+import { useNavigate } from "react-router-dom";
 
 const Starter = () => {
   const [step, setStep] = useState(1);
-
+  const navigation = useNavigate()
   const [usersData, setUsersData] = useState({
     usersGender: "",
     interestedGender: "",
@@ -25,6 +26,7 @@ const Starter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("userData", JSON.stringify(usersData));
+    navigation('/start-searching')
   };
 
   const handleStepChange = (event, nextStep) => {
@@ -51,7 +53,7 @@ const Starter = () => {
       case 1:
         return (
           <div className={styles.input}>
-            <p>Your are a {usersData.usersGender || "..."}</p>
+            <p>I am {usersData.usersGender || "..."}</p>
             <div className={styles.options}>
               <div
                 className={styles.option}
@@ -106,7 +108,7 @@ const Starter = () => {
                   src={male}
                   alt="male"
                   name="interestedGender"
-                  className={`${usersData.usersGender === 'male' ? styles.opacity : ''}`}
+                  className={`${usersData.interestedGender === 'male' ? styles.opacity : ''}`}
                   />
                 Male
               </div>
@@ -122,7 +124,7 @@ const Starter = () => {
                   src={female}
                   alt="female"
                   name="interestedGender"
-                  className={`${usersData.usersGender === 'female' ? styles.opacity : ''}`}
+                  className={`${usersData.interestedGender === 'female' ? styles.opacity : ''}`}
                 
                 />
                 Female
@@ -183,7 +185,7 @@ const Starter = () => {
               onClick={handleSubmit}
               disabled={isNextDisabled()}
             >
-              Start Talking <FaArrowRight />
+              Enter Chat <FaArrowRight />
             </button>
           )}
         </div>

@@ -4,6 +4,7 @@
 .main {
 	max-width: 120rem;
 	margin: 100px auto 0;
+	min-height: 700px;
 	p {
 		@include font(inherit, 2.1rem, $weight-semibold);
 		text-align: end;
