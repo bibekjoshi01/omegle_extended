@@ -3,7 +3,7 @@
 
 .container {
   @include flex(flex-start, center, row, null);
-  padding: 10px;
+  padding: 5rem;
   margin: 150px auto 50px;
   max-width: 120rem;
 
@@ -72,7 +72,8 @@
         background-color: $secondary-light;
         border-radius: $border-xs;
         transition: background-color 0.3s ease;
-
+        border: none;
+        cursor: pointer;
         &:hover {
           background-color: $primary-light;
           outline: none;

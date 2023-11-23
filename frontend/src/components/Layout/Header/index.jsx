@@ -5,7 +5,6 @@ import logo from "../../../assets/brand.png";
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
-  console.log(scrolled, 'scrolled')
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,8 +24,11 @@ const Header = () => {
 
   return (
     <div className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <a href="/">
       <img src={logo} alt="Zingo" className={styles.logo} />
-      <a href="/" className={styles.talkBtn}>
+
+      </a>
+      <a href="/starter" className={styles.talkBtn}>
         Talk To Strangers
       </a>
     </div>

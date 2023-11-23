@@ -2,8 +2,20 @@ import React from "react";
 import banner from "../../assets/banner.jpg";
 import styles from "./HeroSection.module.scss";
 import { FaVideo } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
-const index = () => {
+const HeroSection = () => {
+  const navigation = useNavigate()
+
+  const handleTalkToStrangers = () =>{
+    const hasData = JSON.parse(localStorage.getItem('userData'))
+    if(hasData){
+      navigation("/start-searching")
+    }else{
+      navigation('/starter')
+
+    }
+  }
   return (
     <section className={styles.container}>
       <div className={styles.left}>
@@ -19,10 +31,11 @@ const index = () => {
           </p>
         </div>
         <div className={styles.btn}>
-          <a href=" " className={styles.talkBtn}>
+          <button className={styles.talkBtn} onClick={handleTalkToStrangers}>
             <FaVideo className={styles.icon} />{" "}
             <span className={styles.btnText}>Talk To Strangers</span>{" "}
-          </a>
+
+          </button>
         </div>
       </div>
       <div className={styles.right}>
@@ -32,4 +45,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default HeroSection;

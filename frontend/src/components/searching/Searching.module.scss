@@ -1,0 +1,25 @@
+@import './../../styles/mixins';
+@import './../../styles/variables';
+
+.main{
+  max-width: 120rem;
+  @include flex(center, center, row, null);
+	margin: 100px auto 0;
+  min-height: 700px;
+  .searchingPage{
+    // @include position(absolute, 50%, null, 50%, null, -50%, -50%);
+    padding: 8px 16px;
+    border-radius: $border-sm;
+    outline: none;
+    border: 1px solid $grey-100;
+    cursor: pointer;
+    font-size: $font-xl;
+    background: $secondary-light;
+    color: $light;
+    font-weight: $weight-medium;
+    transition: all .3s;
+    &:hover{
+      background: $primary-light;
+    }
+  }
+}

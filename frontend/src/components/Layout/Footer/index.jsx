@@ -12,10 +12,10 @@ function Footer() {
           </p>
         </div>
         <div className={styles.right}>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-          <a href="#">Terms and Conditions</a>
-          <a href="#">Privacy</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/terms-and-conditions">Terms and Conditions</a>
+          <a href="/privacy">Privacy</a>
         </div>
       </div>
     </footer>
