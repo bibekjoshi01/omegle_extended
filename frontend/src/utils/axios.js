@@ -5,8 +5,7 @@ import setCookie from "./Cookies/setCookie";
 import jwtDecode from "jwt-decode";
 
 const BASE_URL =
-  process.env.NEXT_APP_API_BASE_URL ||
-  "https://api-v1-hrdc-staging.merakitechs.com.np/";
+  process.env.REACT_APP_BASE_URL;
 
 const REFRESH_TOKEN_ENDPOINT = "api/v1/user-app/login/refresh";
 
