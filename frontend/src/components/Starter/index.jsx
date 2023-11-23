@@ -14,25 +14,24 @@ const Starter = () => {
   });
 
   const handleChange = (e) => {
-    const { name, alt, value } = e.target;
+    const { name, value } = e.target;
 
     setUsersData({
       ...usersData,
-      [name]: alt || value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("userData", JSON.stringify(usersData));
-    console.log("User data submitted:", JSON.parse(localStorage.getItem("userData")));
   };
 
-  const handleStepChange = (nextStep) => {
+  const handleStepChange = (event, nextStep) => {
+    event.preventDefault()
     setStep(nextStep);
   };
 
-  console.log(usersData);
 
   const isNextDisabled = () => {
     switch (step) {
@@ -52,7 +51,7 @@ const Starter = () => {
       case 1:
         return (
           <div className={styles.input}>
-            <p>Your are...</p>
+            <p>Your are a {usersData.usersGender || "..."}</p>
             <div className={styles.options}>
               <div
                 className={styles.option}
@@ -66,11 +65,7 @@ const Starter = () => {
                   src={male}
                   alt="male"
                   name="usersGender"
-                  style={{
-                    cursor: "pointer",
-                    display: "block",
-                    opacity: usersData.usersGender === "male" ? 1 : 0.7,
-                  }}
+                  className={`${usersData.usersGender === 'male' ? styles.opacity : ''}`}
                 />
                 Male
               </div>
@@ -86,11 +81,7 @@ const Starter = () => {
                   src={female}
                   alt="female"
                   name="usersGender"
-                  style={{
-                    cursor: "pointer",
-                    display: "block",
-                    opacity: usersData.usersGender === "female" ? 1 : 0.7,
-                  }}
+                  className={`${usersData.usersGender === 'female' ? styles.opacity : ''}`}
                 />
                 Female
               </div>
@@ -101,7 +92,7 @@ const Starter = () => {
       case 2:
         return (
           <div className={styles.input}>
-            <p>Interested In...</p>
+            <p>Interested In {usersData.interestedGender || "..."}</p>
             <div className={styles.options}>
               <div
                 className={styles.option}
@@ -115,12 +106,8 @@ const Starter = () => {
                   src={male}
                   alt="male"
                   name="interestedGender"
-                  style={{
-                    cursor: "pointer",
-                    display: "block",
-                    opacity: usersData.interestedGender === "male" ? 1 : 0.7,
-                  }}
-                />
+                  className={`${usersData.usersGender === 'male' ? styles.opacity : ''}`}
+                  />
                 Male
               </div>
               <div
@@ -130,16 +117,13 @@ const Starter = () => {
                     target: { name: "interestedGender", value: "female" },
                   })
                 }
-              >
+                >
                 <img
                   src={female}
                   alt="female"
                   name="interestedGender"
-                  style={{
-                    cursor: "pointer",
-                    display: "block",
-                    opacity: usersData.interestedGender === "female" ? 1 : 0.7,
-                  }}
+                  className={`${usersData.usersGender === 'female' ? styles.opacity : ''}`}
+                
                 />
                 Female
               </div>
@@ -150,12 +134,13 @@ const Starter = () => {
       case 3:
         return (
           <div className={styles.name}>
-            <label htmlFor="nickName">Your nick Name..</label>
+            <label htmlFor="nickName">Your Nickname</label>
             <input
               type="text"
               name="nickName"
               placeholder="Your nick name.."
               onChange={handleChange}
+              value={usersData.nickName}
             />
           </div>
         );
@@ -174,8 +159,8 @@ const Starter = () => {
         <div className={styles.buttons}>
           {step > 1 && (
             <button
-              className={styles.btn}
-              onClick={() => handleStepChange(step - 1)}
+              className={`${styles.btn}`}
+              onClick={(e) => handleStepChange(e, step - 1)}
             >
               <FaArrowLeft /> Back
             </button>
@@ -183,10 +168,9 @@ const Starter = () => {
 
           {step < 3 && (
             <button
-              className={styles.btn}
-              onClick={() => handleStepChange(step + 1)}
+              className={`${styles.btn} ${isNextDisabled() ? styles.disabled : ''}`}
+              onClick={(e) => handleStepChange(e, step + 1)}
               disabled={isNextDisabled()}
-              style={{ opacity: isNextDisabled() ? 0.4 : 1 }}
             >
               Next <FaArrowRight />
             </button>
@@ -194,11 +178,10 @@ const Starter = () => {
 
           {step === 3 && (
             <button
-              className={styles.submit}
+              className={`${styles.submit} ${isNextDisabled() ? styles.disabled : ''}`}
               type="submit"
               onClick={handleSubmit}
               disabled={isNextDisabled()}
-              style={{ opacity: isNextDisabled() ? 0.4 : 1 }}
             >
               Start Talking <FaArrowRight />
             </button>

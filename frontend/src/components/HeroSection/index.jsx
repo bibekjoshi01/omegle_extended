@@ -19,7 +19,7 @@ const index = () => {
           </p>
         </div>
         <div className={styles.btn}>
-          <a href=" " className={styles.talkBtn}>
+          <a href="/starter" className={styles.talkBtn}>
             <FaVideo className={styles.icon} />{" "}
             <span className={styles.btnText}>Talk To Strangers</span>{" "}
           </a>
