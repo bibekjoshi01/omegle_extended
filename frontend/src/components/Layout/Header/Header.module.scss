@@ -3,11 +3,23 @@
 
 .header {
   @include flex(center, space-between, null, null);
-  @include font(inherit, 1.6rem, lighter);
-  height: auto;
-  padding: 0.8rem 5rem;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @include position(fixed, 10px, null, 50%, null, -50%, 0);
+  max-width: 1200px;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: $border-md;
+  background: $light;
+  border: 1px solid $light;
+  box-shadow: 0 0 16px transparent;
+  transition: all .3s ease-in-out;
 
+  &.scrolled{
+    border: 1px solid $grey-200;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 0 16px rgba($color: #000000, $alpha: .1);
+  }
+
+  z-index: 9;
   .logo {
     width: 15rem;
     height: auto;

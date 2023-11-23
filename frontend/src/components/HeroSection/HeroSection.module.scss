@@ -2,14 +2,24 @@
 @use "../../styles/variables" as *;
 
 .container {
-  @include flex(flex-start, center, null, 5rem);
-  padding: 5rem;
-  margin: 5rem auto;
+  @include flex(flex-start, center, row, null);
+  padding: 10px;
+  margin: 150px auto 50px;
   max-width: 120rem;
+
+  @include lg {
+    flex-direction: column;
+    margin: 10rem 1.5rem;
+    gap: 5rem;
+  }
 
   .right {
     width: 50%;
-    @include flex(flex-start, center, null, 5rem);
+    @include flex(flex-start, flex-end, row, 50px);
+    @include lg {
+      width: 100%;
+      margin-top: 100px;
+    }
 
     .banner {
       padding: 2rem;
@@ -17,6 +27,9 @@
       border-radius: 4px;
       max-width: 50rem;
       height: auto;
+      @include lg {
+        max-width: 100%;
+      }
     }
   }
 
@@ -24,39 +37,40 @@
     width: 50%;
     text-align: center;
     position: relative;
-
+    @include lg {
+      width: 100%;
+    }
     h1 {
-      @include font(inherit, 5rem, lighter);
+      @include font(inherit, $font-4xl, lighter);
       text-align: left;
-      margin-bottom: 1rem;
+      margin-bottom: 10px;
       text-transform: capitalize;
-      color: #000;
+      color: $dark;
 
       span {
-        font-weight: bold;
+        font-weight: $weight-bold;
       }
     }
 
     .description {
       p {
         text-align: left;
-        font-size: 1.8rem;
-        line-height: 2.5rem;
-        color: rgb(88, 88, 88);
+        font-size: $font-lg;
+        color: $grey-600;
       }
     }
 
     .btn {
       .talkBtn {
         @include flex(center, center, null, null);
-        @include font(inherit, 1.5rem, 600);
+        @include font(inherit, $font-base, $weight-semibold);
         position: absolute;
-        margin-top: 5rem;
-        padding: 1.5rem 3rem;
+        margin-top: 50px;
+        padding: 15px 30px;
         text-decoration: none;
-        color: #fff;
+        color: $light;
         background-color: $secondary-light;
-        border-radius: 4px;
+        border-radius: $border-xs;
         transition: background-color 0.3s ease;
 
         &:hover {
@@ -65,12 +79,12 @@
         }
 
         .icon {
-          font-size: 2rem;
-          margin-right: 0.5rem;
+          font-size: $font-xl;
+          margin-right: 5px;
         }
 
         .btnText {
-          margin-left: 0.5rem;
+          margin-left: 5px;
         }
       }
     }
