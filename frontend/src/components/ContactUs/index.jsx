@@ -15,7 +15,7 @@ const ContactUs = () => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log(userData);
+  //   console.log(userData);
   return (
     <div className={styles.main}>
       <section className={styles.contactBanner}>
