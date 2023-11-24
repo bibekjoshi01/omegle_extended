@@ -19,6 +19,14 @@ const Header = ({ pathname }) => {
   const handleNext = ()=>{
     //handle next buttton click
   }
+  const handleEnd = ()=>{
+    //handle end buttton click
+  }
+  
+  // const handleHome = ()=>{
+  //   navigation('/')
+  // }
+
   useEffect(() => {
     setShowTalkBtn(
       pathname === "/chat-dashboard" ||
@@ -66,10 +74,16 @@ const Header = ({ pathname }) => {
         </button>
         <button
           className={`${styles.talkBtn} ${styles.endBtn}`}
-          onClick={handleNext}
+          onClick={handleEnd}
         >
           End
         </button>
+        {/* <button
+          className={`${styles.talkBtn} ${styles.homeBtn}`}
+          onClick={handleHome}
+        >
+          Home
+        </button> */}
         </div>)
       }
     </div>

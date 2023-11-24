@@ -53,7 +53,7 @@ const Starter = () => {
       case 1:
         return (
           <div className={styles.input}>
-            <p>I am {usersData.usersGender || "..."}</p>
+            {usersData.usersGender ?<p>I am {usersData.usersGender}</p>:<p>Select Your Gender</p>}
             <div className={styles.options}>
               <div
                 className={styles.option}
@@ -180,12 +180,12 @@ const Starter = () => {
 
           {step === 3 && (
             <button
-              className={`${styles.submit} ${isNextDisabled() ? styles.disabled : ''}`}
+              className={`${styles.btn} ${isNextDisabled() ? styles.disabled : ''}`}
               type="submit"
               onClick={handleSubmit}
               disabled={isNextDisabled()}
             >
-              Enter Chat <FaArrowRight />
+              Submit <FaArrowRight />
             </button>
           )}
         </div>

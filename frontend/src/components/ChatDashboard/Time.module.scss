@@ -1,0 +1,14 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.main {
+    position: relative;
+    color: $primary-dark;
+    .time {
+        position: absolute;
+        left: 90%;
+        top: 10px;
+        white-space: nowrap;
+        font-size: .8rem;
+    }
+}

@@ -1,23 +1,45 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/variables" as *;
 
+.joinedUser {
+    position: relative;
+    margin-top: calc(100px - 5rem);
+    font-size: 2.2rem;
+    font-weight: $weight-semibold;
+    cursor: pointer;
+    z-index: 100;
+    @include flex(center, center, null, 15px);
+    height: 5rem;
+
+    .userIcon {
+        height: 3rem;
+        border: .1px solid $secondary-light;
+        padding: 2px;
+        border-radius: 50%;
+    }
+}
+
 .main {
-    max-width: 120rem;
-    margin: 100px auto 0;
+    max-width: 90rem;
+    margin: 0 auto 0;
     max-height: 90vh;
     background-color: #f1f1f1;
     border-radius: $border-md;
+    overflow-y: clip;
+
     .msgArea {
         position: relative;
         height: 87vh;
         overflow-y: scroll;
         overflow-x: hidden;
         scroll-behavior: smooth;
-        .joinedNotification{
+
+        .joinedNotification {
             text-align: center;
             font-size: 2rem;
             margin: 10px 0;
         }
+
         .messages {
             display: flex;
             flex-direction: column;
@@ -28,15 +50,17 @@
                 width: fit-content;
                 line-height: 2.3rem;
                 font-size: 1.5rem;
-                color: rgba(0, 0, 0, 0.8);
+                color: rgba(0, 0, 0, 0.9);
+                font-weight: 420;
                 border-radius: 20px;
                 padding: 12px;
                 margin: 9px;
                 font-size: 1.4rem;
+                position: relative;
             }
 
             .incomingMsg {
-                color: rgba(0, 0, 0, 0.8);
+                color: rgba(0, 0, 0, 0.9);
                 background-color: $secondary-light;
                 align-self: flex-start;
                 margin-left: 20px;
@@ -44,7 +68,7 @@
             }
 
             .outgoingMsg {
-                color: rgba(255, 255, 255, 0.8);
+                color: rgba(255, 255, 255, 0.9);
                 background-color: $primary-light;
                 align-self: flex-end;
                 margin-right: 20px;
@@ -71,14 +95,15 @@
 
                 .inputMsg {
                     width: 100%;
-                    height: 6rem;
+                    height: 7rem;
                     padding: 1rem 3rem;
                     margin: 20px 0;
                     letter-spacing: 0.5px;
                     outline: none;
                     border: none;
+                    resize: none;
                     cursor: pointer;
-                    border-radius: $border-lg;
+                    border-radius: $border-md;
                     background-color: #e1e1e1;
                     font-size: 1.6rem;
                     transition: background-color 0.2s ease-in-out;
@@ -95,9 +120,9 @@
                     font-weight: $weight-semibold;
                     letter-spacing: 0.5px;
                     outline: none;
+                    border: none;
                     background-color: $secondary-light;
                     transition: background-color 0.2s ease-in-out;
-                    border: none;
                     border-radius: $border-lg;
                     pointer-events: all;
                     opacity: 1;
@@ -120,8 +145,9 @@
                     font-size: 30px;
                     color: $primary-light;
                     cursor: pointer;
+
                     @include sm {
-                       font-size: 7rem;
+                        font-size: 7rem;
                     }
                 }
             }
