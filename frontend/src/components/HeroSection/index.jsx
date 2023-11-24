@@ -5,7 +5,7 @@ import { FaVideo } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
-  const navigation = useNavigate()
+  const navigation = useNavigate();
 
   const handleTalkToStrangers = () =>{
     const hasData = JSON.parse(localStorage.getItem('userData'))
@@ -13,7 +13,6 @@ const HeroSection = () => {
       navigation("/start-searching")
     }else{
       navigation('/starter')
-
     }
   }
   return (

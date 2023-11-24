@@ -1,0 +1,134 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.main {
+    max-width: 120rem;
+    margin: 100px auto 0;
+    max-height: 90vh;
+    background-color: #f1f1f1;
+    border-radius: $border-md;
+    .msgArea {
+        position: relative;
+        height: 87vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        .joinedNotification{
+            text-align: center;
+            font-size: 2rem;
+            margin: 10px 0;
+        }
+        .messages {
+            display: flex;
+            flex-direction: column;
+
+            .msgBox {
+                height: fit-content;
+                max-width: 60%;
+                width: fit-content;
+                line-height: 2.3rem;
+                font-size: 1.5rem;
+                color: rgba(0, 0, 0, 0.8);
+                border-radius: 20px;
+                padding: 12px;
+                margin: 9px;
+                font-size: 1.4rem;
+            }
+
+            .incomingMsg {
+                color: rgba(0, 0, 0, 0.8);
+                background-color: $secondary-light;
+                align-self: flex-start;
+                margin-left: 20px;
+                border-radius: 20px 20px 20px 0px;
+            }
+
+            .outgoingMsg {
+                color: rgba(255, 255, 255, 0.8);
+                background-color: $primary-light;
+                align-self: flex-end;
+                margin-right: 20px;
+                border-radius: 20px 20px 0px 20px;
+            }
+        }
+
+        .form {
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+            background-color: $light;
+            box-shadow: 0 -2px 1px rgba(0, 0, 0, 0.2);
+
+            .row {
+                @include flex(center, flex-start, row, 1.2rem);
+                margin: 0 2rem;
+
+                .icons {
+                    @include flex(center, flex-start, row, 3rem);
+                    font-size: 2.2rem;
+                    cursor: pointer;
+                }
+
+                .inputMsg {
+                    width: 100%;
+                    height: 6rem;
+                    padding: 1rem 3rem;
+                    margin: 20px 0;
+                    letter-spacing: 0.5px;
+                    outline: none;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: $border-lg;
+                    background-color: #e1e1e1;
+                    font-size: 1.6rem;
+                    transition: background-color 0.2s ease-in-out;
+
+                    &:hover {
+                        background-color: #d1d1d1;
+                    }
+                }
+
+                .send {
+                    height: 40px;
+                    width: 13rem;
+                    color: $light;
+                    font-weight: $weight-semibold;
+                    letter-spacing: 0.5px;
+                    outline: none;
+                    background-color: $secondary-light;
+                    transition: background-color 0.2s ease-in-out;
+                    border: none;
+                    border-radius: $border-lg;
+                    pointer-events: all;
+                    opacity: 1;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $primary-light;
+                    }
+
+                    @include sm {
+                        padding: 0 10px;
+                    }
+
+                    @include md {
+                        border-radius: $border-md;
+                    }
+                }
+
+                .heart {
+                    font-size: 30px;
+                    color: $primary-light;
+                    cursor: pointer;
+                    @include sm {
+                       font-size: 7rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

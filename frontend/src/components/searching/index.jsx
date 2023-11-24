@@ -7,7 +7,7 @@ const Searching = () => {
   const navigation = useNavigate()
 
   const handleSearch = () =>{
-    navigation('/')
+    navigation('/chat-dashboard');
   }
   return (
     <div className={styles.main}>
