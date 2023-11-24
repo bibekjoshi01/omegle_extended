@@ -2,26 +2,23 @@
 @use "../../styles/variables" as *;
 
 .main {
-  max-width: 120rem;
-  margin: 100px auto 10px;
-  min-height: 500px;
-  box-shadow: 0 0 3px #ccc;
-  border-radius: 4px;
-  padding: 5rem;
-  p {
-    @include font(inherit, 2.1rem, $weight-semibold);
-    text-align: end;
-  }
-  .form {
-    width: 60%;
-    margin-left: 20%;
-    padding: 3rem;
-    @include flex(flex-start, flex-start, column, 5rem);
-    @include lg {
-      width: 100%;
-      margin-top: 10px;
-      margin-left: 0;
-    }
+	max-width: 120rem;
+	margin: 100px auto 0;
+	min-height: 550px;
+	p {
+		@include font(inherit, 2.1rem, $weight-semibold);
+		text-align: end;
+	}
+	.form {
+		width: 60%;
+		margin-left: 20%;
+		padding: 3rem;
+		@include flex(flex-start, flex-start, column, 5rem);
+		@include lg {
+			width: 100%;
+			margin-top: 10px;
+			margin-left: 0;
+		}
 
     .input {
       width: 100%;
