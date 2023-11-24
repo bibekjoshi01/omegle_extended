@@ -6,9 +6,9 @@ const useOverflowEffect = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const isHomePage = location.pathname === "/";
+    const isHomePageOrContact = location.pathname === "/" || location.pathname==='/contact';
 
-    if (isHomePage) {
+    if (isHomePageOrContact) {
       document.documentElement.style.overflowY = "auto";
     } else {
       document.documentElement.style.overflowY = "clip";
