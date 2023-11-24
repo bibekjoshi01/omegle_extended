@@ -3,11 +3,11 @@
 
 .main {
   max-width: 120rem;
-  margin: 100px auto 50px;
-  min-height: 550px;
+  min-height: 70vh;
   box-shadow: 0 0 3px #ccc;
-  padding: 5rem;
-
+  padding: 2rem;
+  margin: 100px auto 0px;
+ 
   p {
     @include font(inherit, 2.1rem, $weight-semibold);
     text-align: end;
