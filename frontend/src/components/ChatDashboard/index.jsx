@@ -22,7 +22,7 @@ const ChatDashboard = () => {
       <div className={styles.msgArea}>
         <p className={styles.joinedNotification}>Manish joined the chat.</p>
         <div className={styles.messages}>
-          <div className={`${styles.msgBox} ${styles.incomingMsg}`}>Hi <Time /> <FaHeart className={`${styles.heartInMsg} ${styles.heart}`} /></div>
+          <div className={`${styles.msgBox} ${styles.incomingMsg}`}>Hi <Time /></div>
           <div className={`${styles.msgBox} ${styles.outgoingMsg}`}>Hello <Time /></div>
           <div className={`${styles.msgBox} ${styles.incomingMsg}`}>
             What are you doing <Time />
