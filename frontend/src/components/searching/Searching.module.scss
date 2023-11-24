@@ -1,25 +1,28 @@
-@import './../../styles/mixins';
-@import './../../styles/variables';
+@import "./../../styles/mixins";
+@import "./../../styles/variables";
 
-.main{
+.main {
   max-width: 120rem;
-  @include flex(center, flex-start, column, 4rem);
-	margin: 100px auto 0;
-	min-height: 550px;
-  @include xs{
+  @include flex(center, center, column, 4rem);
+  margin: 100px auto 50px;
+  min-height: 550px;
+  padding: 5rem;
+  box-shadow: 0 0 3px #ccc;
+
+  @include xs {
+    min-height: 470px;
+  } 
+  @include sm {
     min-height: 470px;
   }
-  @include sm{
-    min-height: 470px;
-  }
-  @include md{
+  @include md {
     min-height: 450px;
   }
 
-  .usersName{
+  .usersName {
     font-size: 2.5rem;
   }
-  .searchingPage{
+  .searchingPage {
     // @include position(absolute, 50%, null, 50%, null, -50%, -50%);
     padding: 15px 20px;
     border-radius: $border-sm;
@@ -30,8 +33,8 @@
     background: $secondary-light;
     color: $light;
     font-weight: $weight-medium;
-    transition: all .3s;
-    &:hover{
+    transition: all 0.3s;
+    &:hover {
       background: $primary-light;
     }
   }

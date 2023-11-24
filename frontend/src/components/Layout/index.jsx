@@ -13,7 +13,7 @@ function Index({ children }) {
 
   return (
     <>
-      <Header pathname={pathname}/>
+      <Header pathname={pathname} />
       {children}
       {!isInChat && <Footer />}
     </>

@@ -2,26 +2,28 @@
 @use "../../styles/variables" as *;
 
 .main {
-	max-width: 120rem;
-	margin: 100px auto 0;
-	min-height: 550px;
+  max-width: 120rem;
+  margin: 100px auto 50px;
+  min-height: 550px;
+  box-shadow: 0 0 3px #ccc;
+  padding: 5rem;
 
-	p {
-		@include font(inherit, 2.1rem, $weight-semibold);
-		text-align: end;
-	}
+  p {
+    @include font(inherit, 2.1rem, $weight-semibold);
+    text-align: end;
+  }
 
-	.form {
-		width: 60%;
-		margin-left: 20%;
-		padding: 3rem;
-		@include flex(flex-start, flex-start, column, 5rem);
+  .form {
+    width: 60%;
+    margin-left: 20%;
+    padding: 3rem;
+    @include flex(flex-start, flex-start, column, 5rem);
 
-		@include lg {
-			width: 100%;
-			margin-top: 10px;
-			margin-left: 0;
-		}
+    @include lg {
+      width: 100%;
+      margin-top: 10px;
+      margin-left: 0;
+    }
 
     .input {
       width: 100%;
@@ -35,40 +37,40 @@
         @include flex(center, space-evenly, row, null);
         margin-top: 3.3rem;
 
-				.option {
-					display: inline;
-					text-align: center;
-					@include font(inherit, 1.8rem, $weight-normal);
-					transition: all 0.7 ease-in-out;
+        .option {
+          display: inline;
+          text-align: center;
+          @include font(inherit, 1.8rem, $weight-normal);
+          transition: all 0.7 ease-in-out;
 
-					img {
-						height: 15rem;
-						width: 15rem;
-						cursor: pointer;
-						display: block;
-						opacity: 0.7;
-						margin-bottom: 10px;
-						border: 1px solid black;
-						border-radius: 50%;
-						padding: 2px;
-						transition: all 0.7 ease-in-out;
+          img {
+            height: 15rem;
+            width: 15rem;
+            cursor: pointer;
+            display: block;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            padding: 2px;
+            transition: all 0.7 ease-in-out;
 
-						&.opacity {
-							opacity: 1;
-						}
+            &.opacity {
+              opacity: 1;
+            }
 
-						&:hover {
-							opacity: 0.9;
-							transform: scale(1.02);
-						}
-					}
+            &:hover {
+              opacity: 0.9;
+              transform: scale(1.02);
+            }
+          }
 
-					&:hover {
-						font-weight: $weight-semibold;
-					}
-				}
-			}
-		}
+          &:hover {
+            font-weight: $weight-semibold;
+          }
+        }
+      }
+    }
 
     .name {
       width: 100%;
@@ -96,35 +98,35 @@
       }
     }
 
-		.buttons {
-			@include flex(center, space-evenly, row, null);
-			width: 100%;
+    .buttons {
+      @include flex(center, space-evenly, row, null);
+      width: 100%;
 
-			.btn {
-				height: 50px;
-				width: 15rem;
-				color: $light;
-				font-weight: $weight-semibold;
-				font-size: 1.7rem;
-				letter-spacing: 0.5px;
-				outline: none;
-				background-color: $secondary-light;
-				transition: background-color 0.2s ease-in-out;
-				border: none;
-				border-radius: $border-lg;
-				pointer-events: all;
-				opacity: 1;
-				cursor: pointer;
+      .btn {
+        height: 50px;
+        width: 15rem;
+        color: $light;
+        font-weight: $weight-semibold;
+        font-size: 1.7rem;
+        letter-spacing: 0.5px;
+        outline: none;
+        background-color: $secondary-light;
+        transition: background-color 0.2s ease-in-out;
+        border: none;
+        border-radius: $border-lg;
+        pointer-events: all;
+        opacity: 1;
+        cursor: pointer;
 
-				&.disabled {
-					pointer-events: none;
-					opacity: .4;
-				}
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.4;
+        }
 
-				&:hover {
-					background-color: $primary-light;
-				}
-			}
-		}
-	}
+        &:hover {
+          background-color: $primary-light;
+        }
+      }
+    }
+  }
 }

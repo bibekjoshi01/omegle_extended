@@ -8,21 +8,21 @@ const Header = ({ pathname }) => {
   const [showTalkBtn, setShowTalkBtn] = useState(true);
   const navigation = useNavigate();
 
-  const handleTalkToStrangers = () =>{
-    const hasData = JSON.parse(localStorage.getItem('userData'))
-    if(hasData){
-      navigation("/start-searching")
-    }else{
-      navigation('/starter')
+  const handleTalkToStrangers = () => {
+    const hasData = JSON.parse(localStorage.getItem("userData"));
+    if (hasData) {
+      navigation("/start-searching");
+    } else {
+      navigation("/starter");
     }
-  }
-  const handleNext = ()=>{
+  };
+  const handleNext = () => {
     //handle next buttton click
-  }
-  const handleEnd = ()=>{
+  };
+  const handleEnd = () => {
     //handle end buttton click
-  }
-  
+  };
+
   // const handleHome = ()=>{
   //   navigation('/')
   // }
@@ -64,28 +64,25 @@ const Header = ({ pathname }) => {
           Talk To Strangers
         </button>
       )}
-      {
-        (pathname==='/chat-dashboard') &&
-        (<div className={styles.buttons}><button
-          className={styles.talkBtn}
-          onClick={handleNext}
-        >
-          Next
-        </button>
-        <button
-          className={`${styles.talkBtn} ${styles.endBtn}`}
-          onClick={handleEnd}
-        >
-          End
-        </button>
-        {/* <button
+      {pathname === "/chat-dashboard" && (
+        <div className={styles.buttons}>
+          <button className={styles.talkBtn} onClick={handleNext}>
+            Next
+          </button>
+          <button
+            className={`${styles.talkBtn} ${styles.endBtn}`}
+            onClick={handleEnd}
+          >
+            End
+          </button>
+          {/* <button
           className={`${styles.talkBtn} ${styles.homeBtn}`}
           onClick={handleHome}
         >
           Home
         </button> */}
-        </div>)
-      }
+        </div>
+      )}
     </div>
   );
 };
