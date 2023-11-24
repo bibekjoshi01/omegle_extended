@@ -7,7 +7,9 @@ import ContactUs from "./components/ContactUs";
 import { Routes, Route } from "react-router-dom";
 import Searching from "./components/searching";
 import ChatDashboard from "./components/ChatDashboard";
+import useOverflowEffect from "./utils/functions/useOverflowEffect";
 const App = () => {
+  useOverflowEffect();//to manage overflowing issue
   return (
     <Provider store={store}>
       <Layout>

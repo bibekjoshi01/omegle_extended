@@ -1,10 +1,9 @@
-import React from "react";
 import styles from "./HomePage.module.scss";
 import Hero from "../HeroSection/index";
 import Features from "../Features";
 import FAQs from "../FAQs";
-
-const index = () => {
+import React from 'react';
+const Index = () => {  
   return (
     <div className={styles.main}>
       <Hero />
@@ -14,4 +13,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
