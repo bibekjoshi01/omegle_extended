@@ -4,7 +4,7 @@
 .main {
   max-width: 120rem;
   @include flex(center, center, column, 4rem);
-  margin: 100px auto 50px;
+  margin: 100px auto 10px;
   min-height: 550px;
   padding: 5rem;
   box-shadow: 0 0 3px #ccc;
