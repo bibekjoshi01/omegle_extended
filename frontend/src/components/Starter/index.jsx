@@ -4,14 +4,9 @@ import styles from './Starter.module.scss';
 import male from '../../assets/male.png';
 import female from '../../assets/female.png';
 import { useNavigate } from 'react-router-dom';
-import { starterSelector } from './redux/selector';
-import { useDispatch, useSelector } from 'react-redux';
-import { createStarter } from './redux/thunk';
 const Starter = () => {
 	const [step, setStep] = useState(1);
-	const navigation = useNavigate();
-	const dispatch = useDispatch();
-
+	const navigation = useNavigate()
 	const [usersData, setUsersData] = useState({
 		usersGender: '',
 		interestedGender: '',
@@ -29,14 +24,8 @@ const Starter = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// localStorage.setItem('userData', JSON.stringify(usersData));
-		const value = {
-			user_id: Math.floor(Math.random() * 10),
-			nickname: usersData.nickName,
-			gender: usersData.usersGender.toUpperCase(),
-			interested_gender: usersData.interestedGender.toUpperCase(),
-		};
-		dispatch(createStarter(value));
+		localStorage.setItem('userData', JSON.stringify(usersData));
+		navigation('/start-searching')
 	};
 
 	const handleStepChange = (event, nextStep) => {
