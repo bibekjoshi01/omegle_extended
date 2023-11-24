@@ -1,5 +1,5 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/variables' as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
 
 .main {
 	max-width: 120rem;
@@ -23,17 +23,17 @@
 			margin-left: 0;
 		}
 
-		.input {
-			width: 100%;
+    .input {
+      width: 100%;
 
-			p {
-				@include font(inherit, 2.5rem, $weight-semibold);
-				text-align: center;
-			}
+      p {
+        @include font(inherit, 2.5rem, $weight-semibold);
+        text-align: center;
+      }
 
-			.options {
-				@include flex(center, space-evenly, row, null);
-				margin-top: 3.3rem;
+      .options {
+        @include flex(center, space-evenly, row, null);
+        margin-top: 3.3rem;
 
 				.option {
 					display: inline;
@@ -70,31 +70,31 @@
 			}
 		}
 
-		.name {
-			width: 100%;
+    .name {
+      width: 100%;
 
-			label {
-				@include font(inherit, 1.8rem, $weight-normal);
-			}
+      label {
+        @include font(inherit, 1.8rem, $weight-normal);
+      }
 
-			input {
-				width: 100%;
-				height: 6rem;
-				padding: 1rem 3rem;
-				margin: 20px 0;
-				letter-spacing: 0.5px;
-				outline: none;
-				border: none;
-				border-radius: $border-lg;
-				background-color: #f1f1f1;
-				font-size: 1.6rem;
-				transition: background-color 0.2s ease-in-out;
+      input {
+        width: 100%;
+        height: 6rem;
+        padding: 1rem 3rem;
+        margin: 20px 0;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+        border-radius: $border-lg;
+        background-color: #f1f1f1;
+        font-size: 1.6rem;
+        transition: background-color 0.2s ease-in-out;
 
-				&:hover {
-					background-color: #e6e4e4;
-				}
-			}
-		}
+        &:hover {
+          background-color: #e6e4e4;
+        }
+      }
+    }
 
 		.buttons {
 			@include flex(center, space-evenly, row, null);
