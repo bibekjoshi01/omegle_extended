@@ -48,9 +48,16 @@
     column-gap:20px ;
     .endBtn{
       background-color: $primary-light;
+      transition: all 0.3s ease-in-out;
       &:hover{
         background-color: $secondary-light;
       }
     }
+    // .homeBtn{
+    //   background-color: $tertiary-light;
+    //   &:hover{
+    //     background-color: $primary-light;
+    //   }
+    // }
   }
 }

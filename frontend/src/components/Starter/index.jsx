@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { starterSelector } from './redux/selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { createStarter } from './redux/thunk';
+
 const Starter = () => {
 	const [step, setStep] = useState(1);
 	const navigation = useNavigate();
@@ -29,7 +30,8 @@ const Starter = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		// localStorage.setItem('userData', JSON.stringify(usersData));
+		navigation('/start-searching');
+		localStorage.setItem('userData', JSON.stringify(usersData));
 		const value = {
 			user_id: Math.floor(Math.random() * 10),
 			nickname: usersData.nickName,
@@ -57,60 +59,48 @@ const Starter = () => {
 		}
 	};
 
-	const renderStepContent = () => {
-		switch (step) {
-			case 1:
-				return (
-					<div className={styles.input}>
-						<p>I am {usersData.usersGender || '...'}</p>
-						<div className={styles.options}>
-							<div
-								className={styles.option}
-								onClick={() =>
-									handleChange({
-										target: {
-											name: 'usersGender',
-											value: 'male',
-										},
-									})
-								}>
-								<img
-									src={male}
-									alt="male"
-									name="usersGender"
-									className={`${
-										usersData.usersGender === 'male'
-											? styles.opacity
-											: ''
-									}`}
-								/>
-								Male
-							</div>
-							<div
-								className={styles.option}
-								onClick={() =>
-									handleChange({
-										target: {
-											name: 'usersGender',
-											value: 'female',
-										},
-									})
-								}>
-								<img
-									src={female}
-									alt="female"
-									name="usersGender"
-									className={`${
-										usersData.usersGender === 'female'
-											? styles.opacity
-											: ''
-									}`}
-								/>
-								Female
-							</div>
-						</div>
-					</div>
-				);
+  const renderStepContent = () => {
+    switch (step) {
+      case 1:
+        return (
+          <div className={styles.input}>
+            {usersData.usersGender ?<p>I am {usersData.usersGender}</p>:<p>Select Your Gender</p>}
+            <div className={styles.options}>
+              <div
+                className={styles.option}
+                onClick={() =>
+                  handleChange({
+                    target: { name: "usersGender", value: "male" },
+                  })
+                }
+              >
+                <img
+                  src={male}
+                  alt="male"
+                  name="usersGender"
+                  className={`${usersData.usersGender === 'male' ? styles.opacity : ''}`}
+                />
+                Male
+              </div>
+              <div
+                className={styles.option}
+                onClick={() =>
+                  handleChange({
+                    target: { name: "usersGender", value: "female" },
+                  })
+                }
+              >
+                <img
+                  src={female}
+                  alt="female"
+                  name="usersGender"
+                  className={`${usersData.usersGender === 'female' ? styles.opacity : ''}`}
+                />
+                Female
+              </div>
+            </div>
+          </div>
+        );
 
 			case 2:
 				return (
@@ -212,21 +202,20 @@ const Starter = () => {
 						</button>
 					)}
 
-					{step === 3 && (
-						<button
-							className={`${styles.submit} ${
-								isNextDisabled() ? styles.disabled : ''
-							}`}
-							type="submit"
-							onClick={handleSubmit}
-							disabled={isNextDisabled()}>
-							Enter Chat <FaArrowRight />
-						</button>
-					)}
-				</div>
-			</form>
-		</div>
-	);
+          {step === 3 && (
+            <button
+              className={`${styles.btn} ${isNextDisabled() ? styles.disabled : ''}`}
+              type="submit"
+              onClick={handleSubmit}
+              disabled={isNextDisabled()}
+            >
+              Submit <FaArrowRight />
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default Starter;
