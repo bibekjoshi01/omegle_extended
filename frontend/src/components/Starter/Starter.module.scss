@@ -1,5 +1,5 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/variables' as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
 
 .main {
 	max-width: 120rem;
@@ -20,92 +20,92 @@
 			margin-left: 0;
 		}
 
-		.input {
-			width: 100%;
+    .input {
+      width: 100%;
 
-			p {
-				@include font(inherit, 2.5rem, $weight-semibold);
-				text-align: center;
-			}
+      p {
+        @include font(inherit, 2.5rem, $weight-semibold);
+        text-align: center;
+      }
 
-			.options {
-				@include flex(center, space-evenly, row, null);
-				margin-top: 3.3rem;
+      .options {
+        @include flex(center, space-evenly, row, null);
+        margin-top: 3.3rem;
 
-				.option {
-					display: inline;
-					text-align: center;
-					@include font(inherit, 1.8rem, $weight-normal);
-					img {
-						height: 15rem;
-						width: 15rem;
-						cursor: pointer;
-						display: block;
-						opacity: 0.7;
-						margin-bottom: 10px;
-						&.opacity {
-							opacity: 1;
-						}
-					}
-				}
-			}
-		}
+        .option {
+          display: inline;
+          text-align: center;
+          @include font(inherit, 1.8rem, $weight-normal);
+          img {
+            height: 15rem;
+            width: 15rem;
+            cursor: pointer;
+            display: block;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            &.opacity {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
 
-		.name {
-			width: 100%;
+    .name {
+      width: 100%;
 
-			label {
-				@include font(inherit, 1.8rem, $weight-normal);
-			}
+      label {
+        @include font(inherit, 1.8rem, $weight-normal);
+      }
 
-			input {
-				width: 100%;
-				height: 6rem;
-				padding: 1rem 3rem;
-				margin: 20px 0;
-				letter-spacing: 0.5px;
-				outline: none;
-				border: none;
-				border-radius: $border-lg;
-				background-color: #f1f1f1;
-				font-size: 1.6rem;
-				transition: background-color 0.2s ease-in-out;
+      input {
+        width: 100%;
+        height: 6rem;
+        padding: 1rem 3rem;
+        margin: 20px 0;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+        border-radius: $border-lg;
+        background-color: #f1f1f1;
+        font-size: 1.6rem;
+        transition: background-color 0.2s ease-in-out;
 
-				&:hover {
-					background-color: #e6e4e4;
-				}
-			}
-		}
+        &:hover {
+          background-color: #e6e4e4;
+        }
+      }
+    }
 
-		.buttons {
-			@include flex(center, space-evenly, row, null);
-			width: 100%;
-			.submit,
-			.btn {
-				height: 50px;
-				width: 15rem;
-				color: $light;
-				font-weight: $weight-semibold;
-				letter-spacing: 0.5px;
-				outline: none;
-				background-color: $secondary-light;
-				transition: background-color 0.2s ease-in-out;
-				border: none;
-				border-radius: $border-lg;
-                pointer-events: all;
-                opacity: 1;
-                cursor: pointer;
-                &.disabled{
-                    pointer-events: none;
-                    opacity: .4;
-                }
-				&:hover {
-					background-color: $primary-light;
-				}
-			}
-			.btn {
-				text-align: center;
-			}
-		}
-	}
+    .buttons {
+      @include flex(center, space-evenly, row, null);
+      width: 100%;
+      .submit,
+      .btn {
+        height: 50px;
+        width: 15rem;
+        color: $light;
+        font-weight: $weight-semibold;
+        letter-spacing: 0.5px;
+        outline: none;
+        background-color: $secondary-light;
+        transition: background-color 0.2s ease-in-out;
+        border: none;
+        border-radius: $border-lg;
+        pointer-events: all;
+        opacity: 1;
+        cursor: pointer;
+        &.disabled {
+          pointer-events: none;
+          opacity: 0.4;
+        }
+        &:hover {
+          background-color: $primary-light;
+        }
+      }
+      .btn {
+        text-align: center;
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@
 
 .container {
   @include flex(flex-start, center, row, null);
-  padding: 10px;
+  padding: 5rem;
   margin: 150px auto 50px;
   max-width: 120rem;
 
