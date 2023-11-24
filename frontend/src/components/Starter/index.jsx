@@ -31,7 +31,7 @@ const Starter = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		navigation('/start-searching');
-		// localStorage.setItem('userData', JSON.stringify(usersData));
+		localStorage.setItem('userData', JSON.stringify(usersData));
 		const value = {
 			user_id: Math.floor(Math.random() * 10),
 			nickname: usersData.nickName,
