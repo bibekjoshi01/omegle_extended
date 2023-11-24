@@ -1,14 +1,21 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./Searching.module.scss";
-import { RiUserSearchLine } from "react-icons/ri";
-
+import React from 'react';
+import styles from './Searching.module.scss';
+import { useDispatch } from 'react-redux';
+import { createStarter } from '../Starter/redux/thunk';
 const Searching = () => {
-  const navigation = useNavigate();
-  const userData = JSON.parse(localStorage.getItem("userData"));
-  const handleSearch = () => {
-    navigation("/chat-dashboard");
-  };
+	const dispatch = useDispatch();
+
+	const handleSearch = () => {
+		const usersData = JSON.parse(localStorage.getItem('userData'));
+
+		const value = {
+			user_id: Math.floor(Math.random() * 10),
+			nickname: usersData.nickName,
+			gender: usersData.usersGender.toUpperCase(),
+			interested_gender: usersData.interestedGender.toUpperCase(),
+		};
+		dispatch(createStarter(value));
+	};
   return (
     <div className={styles.main}>
       <p className={styles.usersName}>Hii {userData?.nickName} !! </p>
@@ -17,6 +24,5 @@ const Searching = () => {
       </button>
     </div>
   );
-};
 
 export default Searching;
