@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useLocation } from "react-router-dom";
 
-function index({ children }) {
+function Index({ children }) {
+  const [isInChat, setIsInChat] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setIsInChat(pathname === "/chat-dashboard");
+  }, [pathname]);
+
   return (
     <>
-      <Header />
+      <Header pathname={pathname} />
       {children}
-      <Footer />
+      {!isInChat && <Footer />}
     </>
   );
 }
 
-export default index;
+export default Index;

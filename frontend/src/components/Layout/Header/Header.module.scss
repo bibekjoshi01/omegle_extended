@@ -33,11 +33,31 @@
     color: #fff;
     background-color: $secondary-light;
     border-radius: 4px;
+    border: none;
+    outline: none;
+    cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: $primary-light;
       outline: none;
     }
+  }
+  .buttons{
+    display: flex;
+    column-gap:20px ;
+    .endBtn{
+      background-color: $primary-light;
+      transition: all 0.3s ease-in-out;
+      &:hover{
+        background-color: $secondary-light;
+      }
+    }
+    // .homeBtn{
+    //   background-color: $tertiary-light;
+    //   &:hover{
+    //     background-color: $primary-light;
+    //   }
+    // }
   }
 }

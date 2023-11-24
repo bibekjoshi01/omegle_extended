@@ -16,13 +16,13 @@ const Searching = () => {
 		};
 		dispatch(createStarter(value));
 	};
-	return (
-		<div className={styles.main}>
-			<button onClick={handleSearch} className={styles.searchingPage}>
-				Start Searching
-			</button>
-		</div>
-	);
-};
+  return (
+    <div className={styles.main}>
+      <p className={styles.usersName}>Hii {userData?.nickName} !! </p>
+      <button onClick={handleSearch} className={styles.searchingPage}>
+        Start Searching <RiUserSearchLine />
+      </button>
+    </div>
+  );
 
 export default Searching;

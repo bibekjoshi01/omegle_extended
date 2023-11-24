@@ -3,20 +3,22 @@
 
 .main {
   max-width: 120rem;
-  margin: 100px auto 10px;
-  min-height: 500px;
+  min-height: 70vh;
   box-shadow: 0 0 3px #ccc;
-  border-radius: 4px;
-  padding: 5rem;
+  padding: 2rem;
+  margin: 100px auto 0px;
+ 
   p {
     @include font(inherit, 2.1rem, $weight-semibold);
     text-align: end;
   }
+
   .form {
     width: 60%;
     margin-left: 20%;
     padding: 3rem;
     @include flex(flex-start, flex-start, column, 5rem);
+
     @include lg {
       width: 100%;
       margin-top: 10px;
@@ -39,6 +41,8 @@
           display: inline;
           text-align: center;
           @include font(inherit, 1.8rem, $weight-normal);
+          transition: all 0.7 ease-in-out;
+
           img {
             height: 15rem;
             width: 15rem;
@@ -46,9 +50,23 @@
             display: block;
             opacity: 0.7;
             margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            padding: 2px;
+            transition: all 0.7 ease-in-out;
+
             &.opacity {
               opacity: 1;
             }
+
+            &:hover {
+              opacity: 0.9;
+              transform: scale(1.02);
+            }
+          }
+
+          &:hover {
+            font-weight: $weight-semibold;
           }
         }
       }
@@ -83,12 +101,13 @@
     .buttons {
       @include flex(center, space-evenly, row, null);
       width: 100%;
-      .submit,
+
       .btn {
         height: 50px;
         width: 15rem;
         color: $light;
         font-weight: $weight-semibold;
+        font-size: 1.7rem;
         letter-spacing: 0.5px;
         outline: none;
         background-color: $secondary-light;
@@ -98,16 +117,15 @@
         pointer-events: all;
         opacity: 1;
         cursor: pointer;
+
         &.disabled {
           pointer-events: none;
           opacity: 0.4;
         }
+
         &:hover {
           background-color: $primary-light;
         }
-      }
-      .btn {
-        text-align: center;
       }
     }
   }
