@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaCamera, FaImage, FaMicrophone, FaHeart } from "react-icons/fa";
 import styles from "./ChatDashboard.module.scss";
 import Time from "./time";
-import userIcon from "../../assets/male.png";
+// import userIcon from "../../assets/male.png";
 const ChatDashboard = () => {
   const [msg, setMsg] = useState("");
   const handleChange = (e) => {
@@ -15,10 +15,10 @@ const ChatDashboard = () => {
   };
   return (
     <>
-      <div className={styles.joinedUser}>
+      {/* <div className={styles.joinedUser}>
         <img src={userIcon} alt="userIcon" className={styles.userIcon} />
         Manish
-      </div>
+      </div> */}
       <div className={styles.main}>
         <div className={styles.msgArea}>
           <p className={styles.joinedNotification}>Manish joined the chat.</p>
