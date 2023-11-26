@@ -40,6 +40,9 @@ const Searching = () => {
     dispatch(findPartners(roomId))
       .unwrap()
       .then(({ payload }) => {
+        if (payload?.status === 'MATCHED') {
+					navigation('/chat-dashboard');
+				}
         localStorage.setItem('status', payload?.status);
       })
       .catch((error) => {
