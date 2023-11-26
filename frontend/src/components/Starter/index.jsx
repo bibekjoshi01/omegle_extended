@@ -20,6 +20,7 @@ const Starter = () => {
 		setUsersData({
 			...usersData,
 			[name]: value,
+			userId: Math.floor(Math.random() * 10)
 		});
 	};
 

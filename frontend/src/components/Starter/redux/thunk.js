@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { initialize, getPartners } from './api';
+import { getMessages, initialize, sendMessage, updateStatus } from './api';
 
 export const createStarter = createAsyncThunk('starter', async (values) => {
   try{
@@ -12,11 +12,33 @@ export const createStarter = createAsyncThunk('starter', async (values) => {
 });
 
 
-export const findPartners = createAsyncThunk("partners", async(room_id)=>{
+// update status
+export const updateUserStatus = createAsyncThunk("status", async(room_id)=>{
   try{
-    const response = await getPartners(room_id)
+    const response = await updateStatus(room_id)
     return {payload: response.data}
 
+  }catch(err){
+    return err
+  }
+})
+
+// get messages
+export const getUserMessages = createAsyncThunk("messages", async(room_id)=>{
+  try{
+    const response = await getMessages(room_id)
+    return {payload: response.data}
+  }catch(err){
+    return err
+  }
+})
+
+
+// post messages
+export const sendMessages = createAsyncThunk("sendMessages", async(values)=>{
+  try{
+    const response = await sendMessage(values)
+    return {payload: response.data}
   }catch(err){
     return err
   }
