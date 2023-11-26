@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import logo from "../../../assets/brand.png";
 import { useNavigate } from "react-router-dom";
+import userIcon from "../../../assets/male.png"
 
 const Header = ({ pathname }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -55,6 +56,10 @@ const Header = ({ pathname }) => {
       <a href="/">
         <img src={logo} alt="Zingo" className={styles.logo} />
       </a>
+      <div className={styles.joinedUser}>
+            <img src={userIcon} alt="userIcon" className={styles.userIcon} />
+            Manish
+          </div>
       {!showTalkBtn && (
         <button
           href="/starter"
