@@ -9,17 +9,23 @@
     margin: 8vh auto 0;
   }
 
-  max-height: 90vh;
+  max-height: 80vh;
   background-color: #f1f1f1;
   border-radius: $border-md;
   overflow-y: clip;
 
   .msgArea {
     position: relative;
-    height: 90vh;
+    height: 76vh;
 
+    @include md {
+      height: 75vh;
+    }
     @include sm {
-      height: 86vh;
+      height: 80vh;
+    }
+    @include xs {
+      height: 80vh;
     }
 
     overflow-y: scroll;
@@ -76,6 +82,7 @@
       position: fixed;
       bottom: 0;
       width: 100%;
+      height: 12vh;
       max-width: 90rem;
       background-color: $light;
       box-shadow: 0 -2px 1px rgba(0, 0, 0, 0.2);
