@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaCamera, FaImage, FaMicrophone, FaHeart } from "react-icons/fa";
 import styles from "./ChatDashboard.module.scss";
 import Time from "./time";
+import { findPartners } from "../Starter/redux/thunk";
+import { useDispatch } from "react-redux";
 // import userIcon from "../../assets/male.png";
 const ChatDashboard = () => {
+  const userStatus = localStorage.getItem('status');
+	const roomId = localStorage.getItem('roomId');
+
+  console.log(userStatus, roomId, 'userstatus and roomId')
+  const dispatch = useDispatch();
   const [msg, setMsg] = useState("");
   const handleChange = (e) => {
     setMsg(e.target.value);
@@ -11,8 +18,30 @@ const ChatDashboard = () => {
   const handleSend = (e) => {
     e.preventDefault();
     localStorage.setItem("message", msg);
-    console.log(localStorage.getItem("message"));
+    
   };
+
+  const updateStatus = useCallback((roomId) => {
+    dispatch(findPartners(roomId))
+      .unwrap()
+      .then(({ payload }) => {
+        localStorage.setItem('status', payload?.status);
+      })
+      .catch((error) => {
+        console.log(error, 'error');
+      });
+  }, [dispatch]); 
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+  
+      if (userStatus !== '') {
+        updateStatus(roomId);
+      }
+    }, 5000);
+  
+    return () => clearInterval(interval); 
+  }, [userStatus, roomId, updateStatus]); 
   return (
     <>
       {/* <div className={styles.joinedUser}>
