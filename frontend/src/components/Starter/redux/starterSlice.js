@@ -1,41 +1,84 @@
-import {createSlice} from '@reduxjs/toolkit'
-import { createStarter, findPartners } from './thunk'
+import { createSlice } from '@reduxjs/toolkit';
+import { createStarter, disconnectUser, sendMessages, updateUserStatus } from './thunk';
 
 const initialState = {
-  loading: false,
-  searching: false,
-}
-
+	roomId: null,
+	status: null,
+	loading: false,
+	isSearching: false,
+	disconnecting: false,
+	isNext: false,
+  sending: false,
+  messages: [],
+};
 
 export const starterSlice = createSlice({
-  name: 'starter',
-  initialState,
-  reducer:{
-   
-  },
-  // extraReducers: (builder)=>{
-  //   builder.addCase(createStarter.pending, (state)=>{
-  //     state.loading = true
-  //   })
-  //   builder.addCase(createStarter.fulfilled, (state)=>{
-  //     state.loading = false
-      
-  //   })
-  //   builder.addCase(createStarter.rejected, (state)=>{
-  //     state.loading = false
+	name: 'starter',
+	initialState,
+	reducers: {
+		setRoomId: (state, action) => {
+			state.roomId = action.payload;
+		},
+		setStatus: (state, action) => {
+			state.status = action.payload;
+		},
+		setIsSearching: (state, action) => {
+			state.isSearching = action.payload;
+		},
+		setIsNext: (state, action) => {
+			state.isNext = action.payload;
+		},
+	},
+	extraReducers: (builder) => {
+		// create starter
+		builder.addCase(createStarter.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(createStarter.fulfilled, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(createStarter.rejected, (state) => {
+			state.loading = false;
+		});
 
-  //   })
-  //   builder.addCase(findPartners.pending, (state)=>{
-  //     state.searching = true
-  //   })
-  //   builder.addCase(findPartners.fulfilled, (state)=>{
-  //     state.searching = false
-  //   })
-  //   builder.addCase(findPartners.fulfilled, (state)=>{
-  //     state.searching = false
-  //   })
-  // }
-})
+		// update user status
+		builder.addCase(updateUserStatus.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(updateUserStatus.fulfilled, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(updateUserStatus.rejected, (state) => {
+			state.loading = false;
+		});
 
-export const {} = starterSlice.actions;
-export default starterSlice.reducer
+    // send messages
+    builder.addCase(sendMessages.pending, (state)=>{
+      state.sending = true
+    })
+    builder.addCase(sendMessages.fulfilled, (state, {payload})=>{
+      console.log(payload, 'message payload')
+      state.sending = false
+    })
+    builder.addCase(sendMessages.rejected, (state)=>{
+      state.sending = false
+    })
+
+		// disconnect user
+		builder.addCase(disconnectUser.pending, (state) => {
+			state.disconnecting = true;
+		});
+
+		builder.addCase(disconnectUser.fulfilled, (state) => {
+			state.disconnecting = false;
+		});
+
+		builder.addCase(disconnectUser.rejected, (state) => {
+			state.disconnecting = false;
+		});
+	},
+});
+
+export const { setRoomId, setStatus, setIsSearching, setIsNext } =
+	starterSlice.actions;
+export default starterSlice.reducer;

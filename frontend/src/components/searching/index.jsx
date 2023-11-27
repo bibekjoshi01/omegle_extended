@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Searching.module.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createStarter, updateUserStatus } from '../Starter/redux/thunk';
 import { RiUserSearchLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
+import { starterSelector } from '../Starter/redux/selector';
+import { setIsSearching, setRoomId, setStatus } from '../Starter/redux/starterSlice';
+import { startSearching, updateStatusHelper } from '../../utils/functions/dataFetch';
 
 const Searching = () => {
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
 	const usersData = JSON.parse(localStorage.getItem('userData'));
-	let userStatus = localStorage.getItem('status');
-	const roomId = localStorage.getItem('roomId');
-	console.log(typeof userStatus, userStatus);
-
+	const { roomId, status, loading, isSearching } = useSelector(starterSelector);
 	const handleSearch = () => {
+		dispatch(setIsSearching(true));
 		const value = {
 			user_id: usersData?.userId,
 			nickname: usersData.nickName,
@@ -21,57 +22,56 @@ const Searching = () => {
 			interested_gender: usersData.interestedGender.toUpperCase(),
 		};
 
-		dispatch(createStarter(value))
-			.unwrap()
-			.then(({ payload }) => {
-				if (payload?.status === 'MATCHED') {
-					navigation('/chat-dashboard');
-				}
-				localStorage.setItem('status', payload?.status);
-				localStorage.setItem('roomId', payload?.room_id);
-			})
-			.catch((error) => {
-				console.log(error, 'error');
-			});
+		const dynamicDispatchCreateStarter = startSearching(
+			dispatch,
+			navigation,
+		);
+		dynamicDispatchCreateStarter(value);
 	};
-
+	const handleStopSearching = () => {
+		dispatch(setIsSearching(false));
+	};
 	const updateStatus = useCallback(
 		(roomId) => {
-			dispatch(updateUserStatus(roomId))
-				.unwrap()
-				.then(({ payload }) => {
-					if (payload?.status === 'MATCHED') {
-						navigation('/chat-dashboard');
-					}
-					localStorage.setItem('status', payload?.status);
-				})
-				.catch((error) => {
-					console.log(error, 'error');
-				});
+			const dynamicDispatchCreateStarter = updateStatusHelper(
+				dispatch,
+				navigation,
+			);
+			dynamicDispatchCreateStarter(roomId);
 		},
 		[dispatch]
 	);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (
-				userStatus === 'WAITING' ||
-				userStatus === 'MATCHED' ||
-				userStatus === 'DISCONNECTED'
-			) {
+			if (isSearching && status) {
 				updateStatus(roomId);
 			}
 		}, 5000);
 
 		return () => clearInterval(interval);
-	}, [userStatus, roomId, updateStatus]);
+	}, [status, roomId, isSearching, updateStatus]);
 
 	return (
 		<div className={styles.main}>
 			<p className={styles.usersName}>Hii {usersData?.nickName} !! </p>
-			<button onClick={handleSearch} className={styles.searchingPage}>
-				Start Searching <RiUserSearchLine />
-			</button>
+			{loading && isSearching ? (
+				<>
+					<button
+						onClick={handleStopSearching}
+						className={styles.searchingPage}>
+						stop Searching
+					</button>
+				</>
+			) : (
+				<>
+					<button
+						onClick={handleSearch}
+						className={styles.searchingPage}>
+						Start Searching <RiUserSearchLine />
+					</button>
+				</>
+			)}
 		</div>
 	);
 };

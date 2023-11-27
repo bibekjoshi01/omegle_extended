@@ -7,13 +7,21 @@ import {
 	sendMessages,
 	updateUserStatus,
 } from '../Starter/redux/thunk';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { starterSelector } from '../Starter/redux/selector';
+import { setStatus } from '../Starter/redux/starterSlice';
+import { updateStatusHelper } from '../../utils/functions/dataFetch';
+import { useNavigate } from 'react-router-dom';
 // import userIcon from "../../assets/male.png";
 const ChatDashboard = () => {
-	const userStatus = localStorage.getItem('status');
-	const usersData = JSON.parse(localStorage.getItem('userData'));
-	const roomId = localStorage.getItem('roomId');
+	// defined hooks
+	const navigation = useNavigate()
 	const dispatch = useDispatch();
+
+
+	const {roomId, status, isSearching, isNext} = useSelector(starterSelector)
+	console.log(roomId, 'room id inside chatdashboard')
+	const usersData = JSON.parse(localStorage.getItem('userData'));
 	const [msg, setMsg] = useState('');
 
 	const handleChange = (e) => {
@@ -37,37 +45,34 @@ const ChatDashboard = () => {
 
 	const updateStatus = useCallback(
 		(roomId) => {
-			dispatch(updateUserStatus(roomId))
-				.unwrap()
-				.then(({ payload }) => {
-					localStorage.setItem('status', payload?.status);
-				})
-				.catch((error) => {
-					console.log(error, 'error');
-				});
+			const dynamicDispatchCreateStarter = updateStatusHelper(
+				dispatch,
+				navigation
+			);
+			dynamicDispatchCreateStarter(roomId);
 		},
 		[dispatch]
 	);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (userStatus !== '') {
+			if (isSearching && status) {
 				updateStatus(roomId);
 			}
 		}, 10000);
 
 		return () => clearInterval(interval);
-	}, [userStatus, roomId, updateStatus]);
+	}, [status, isSearching, roomId, updateStatus]);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (roomId) {
+			if (isSearching && roomId && !isNext) {
 				dispatch(getUserMessages(roomId));
 			}
 		}, 5000);
 
 		return () => clearInterval(interval);
-	}, [roomId, dispatch]);
+	}, [roomId, isSearching, dispatch, isNext]);
 	return (
 		<>
 			{/* <div className={styles.joinedUser}>

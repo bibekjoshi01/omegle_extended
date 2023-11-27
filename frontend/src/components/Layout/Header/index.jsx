@@ -1,27 +1,83 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../../assets/brand.png';
 import { useNavigate } from 'react-router-dom';
 import userIcon from '../../../assets/male.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { starterSelector } from '../../Starter/redux/selector';
+import {
+	disconnectUserHelper,
+	startSearching,
+	updateStatusHelper,
+} from '../../../utils/functions/dataFetch';
+import { setIsNext, setIsSearching } from '../../Starter/redux/starterSlice';
 
 const Header = ({ pathname }) => {
-	const [scrolled, setScrolled] = useState(false);
-	const [showTalkBtn, setShowTalkBtn] = useState(true);
+	// defined hooks
+	const dispatch = useDispatch();
 	const navigation = useNavigate();
 
+	// state
+	const [scrolled, setScrolled] = useState(false);
+	const [showTalkBtn, setShowTalkBtn] = useState(true);
+
+	// selector
+	const { roomId, status, loading, isSearching, disconnecting, isNext } =
+		useSelector(starterSelector);
+
+
+	// get users data from localstorage
+	const usersData = JSON.parse(localStorage.getItem('userData'));
+
 	const handleTalkToStrangers = () => {
-		const hasData = JSON.parse(localStorage.getItem('userData'));
-		if (hasData) {
+		if (usersData) {
 			navigation('/start-searching');
 		} else {
 			navigation('/starter');
 		}
 	};
+	//handle next buttton click
 	const handleNext = () => {
-		//handle next buttton click
+		
+		dispatch(setIsNext(true));
+		const value = {
+			user_id: usersData?.userId,
+			nickname: usersData.nickName,
+			gender: usersData.usersGender.toUpperCase(),
+			interested_gender: usersData.interestedGender.toUpperCase(),
+		};
+
+		const dynamicDispatchCreateStarter = startSearching(
+			dispatch,
+			navigation
+		);
+		dynamicDispatchCreateStarter(value);
 	};
+
+	const updateStatus = useCallback(
+		(roomId) => {
+			const dynamicDispatchCreateStarter = updateStatusHelper(
+				dispatch,
+				navigation
+			);
+			dynamicDispatchCreateStarter(roomId);
+		},
+		[dispatch]
+	);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			if (isSearching && status) {
+				updateStatus(roomId);
+			}
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, [status, roomId, isSearching, updateStatus]);
+
 	const handleEnd = () => {
-		//handle end buttton click
+		const dynamicDisconnectUser = disconnectUserHelper(dispatch);
+		dynamicDisconnectUser(roomId);
 	};
 
 	// const handleHome = ()=>{
@@ -77,12 +133,12 @@ const Header = ({ pathname }) => {
 			{pathname === '/chat-dashboard' && (
 				<div className={styles.buttons}>
 					<button className={styles.talkBtn} onClick={handleNext}>
-						Next
+						{loading && isNext ? 'searching...' : 'Next'}
 					</button>
 					<button
 						className={`${styles.talkBtn} ${styles.endBtn}`}
 						onClick={handleEnd}>
-						End
+						{disconnecting ? 'disconnecting...' : 'End'}
 					</button>
 					{/* <button
           className={`${styles.talkBtn} ${styles.homeBtn}`}
