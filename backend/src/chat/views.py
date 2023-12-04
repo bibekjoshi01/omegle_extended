@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
 
 from . serializers import (
-    InitializeChatSerializer, SendChatMessageSerializer, ChatRoomSerializer
+    InitializeChatSerializer, SendChatMessageSerializer, ChatRoomSerializer, ChatRoomInfoSerializer
 )
 from . models import ChatRoom, ChatMessage
 
@@ -118,6 +118,21 @@ class SendChatMessageAPIView(generics.CreateAPIView):
         )
 
 
+class RoomInfoInfoView(APIView):
+    serializer_class = ChatRoomInfoSerializer
+    permission_classes = [AllowAny]
+
+    def get(self, request, room_id):
+        serializer = self.serializer_class(request=self.context)
+        validated_data = serializer.validated_data
+        try:
+            chat_room = ChatRoom.objects.get(room_id=room_id)
+            return Response(validated_data, status=status.HTTP_200_OK)
+        except ChatRoom.DoesNotExist:
+            return Response({'status': 'not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
 class DisconnectChatAPIView(APIView):
     permission_classes = [AllowAny]
 
@@ -126,4 +141,4 @@ class DisconnectChatAPIView(APIView):
         room.status = 'ENDED'
         room.ended_at = timezone.now()
         room.save()
-        return Response('Disconnected', status=status.HTTP_200_OK)
+        return Response('Disconnected', status=status.HTTP_200_OK)       

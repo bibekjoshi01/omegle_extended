@@ -32,3 +32,10 @@ class SendChatMessageSerializer(serializers.Serializer):
     room_id = serializers.UUIDField()
     initiator = serializers.CharField(max_length=20)
     message = serializers.CharField(max_length=255)
+
+
+class ChatRoomInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChatRoom
+        fields = ['room_id', 'name', 'member1', 'member2', 'status']
+        
