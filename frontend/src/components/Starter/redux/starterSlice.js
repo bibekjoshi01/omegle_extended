@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createStarter, disconnectUser, sendMessages, updateUserStatus } from './thunk';
+import { createStarter, disconnectUser, getUserMessages, sendMessages, updateUserStatus } from './thunk';
 
 const initialState = {
 	roomId: null,
@@ -8,8 +8,9 @@ const initialState = {
 	isSearching: false,
 	disconnecting: false,
 	isNext: false,
-  sending: false,
-  messages: [],
+	sending: false,
+	messages: [],
+	loadingMessages: false,
 };
 
 export const starterSlice = createSlice({
@@ -52,17 +53,28 @@ export const starterSlice = createSlice({
 			state.loading = false;
 		});
 
-    // send messages
-    builder.addCase(sendMessages.pending, (state)=>{
-      state.sending = true
-    })
-    builder.addCase(sendMessages.fulfilled, (state, {payload})=>{
-      console.log(payload, 'message payload')
-      state.sending = false
-    })
-    builder.addCase(sendMessages.rejected, (state)=>{
-      state.sending = false
-    })
+		// send messages
+		builder.addCase(sendMessages.pending, (state) => {
+			state.sending = true;
+		});
+		builder.addCase(sendMessages.fulfilled, (state, { payload }) => {
+			state.sending = false;
+		});
+		builder.addCase(sendMessages.rejected, (state) => {
+			state.sending = false;
+		});
+
+		// get messages
+		builder.addCase(getUserMessages.pending, (state)=>{
+			state.loadingMessages = true
+		})
+		builder.addCase(getUserMessages.fulfilled, (state, {payload})=>{
+			state.messages = payload
+			state.loadingMessages = false
+		})
+		builder.addCase(getUserMessages.rejected, (state)=>{
+			state.loadingMessages = false
+		})
 
 		// disconnect user
 		builder.addCase(disconnectUser.pending, (state) => {
@@ -79,6 +91,5 @@ export const starterSlice = createSlice({
 	},
 });
 
-export const { setRoomId, setStatus, setIsSearching, setIsNext } =
-	starterSlice.actions;
+export const { setRoomId, setStatus, setIsSearching, setIsNext } = starterSlice.actions;
 export default starterSlice.reducer;

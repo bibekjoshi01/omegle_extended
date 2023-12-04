@@ -38,7 +38,8 @@ const Header = ({ pathname }) => {
 	};
 	//handle next buttton click
 	const handleNext = () => {
-		
+		const dynamicDisconnectUser = disconnectUserHelper(dispatch);
+		dynamicDisconnectUser(roomId);
 		dispatch(setIsNext(true));
 		const value = {
 			user_id: usersData?.userId,
