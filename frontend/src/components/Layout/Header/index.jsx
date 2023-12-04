@@ -1,95 +1,156 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Header.module.scss";
-import logo from "../../../assets/brand.png";
-import { useNavigate } from "react-router-dom";
-import userIcon from "../../../assets/male.png"
+import React, { useCallback, useEffect, useState } from 'react';
+import styles from './Header.module.scss';
+import logo from '../../../assets/brand.png';
+import { useNavigate } from 'react-router-dom';
+import userIcon from '../../../assets/male.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { starterSelector } from '../../Starter/redux/selector';
+import {
+	disconnectUserHelper,
+	startSearching,
+	updateStatusHelper,
+} from '../../../utils/functions/dataFetch';
+import { setIsNext, setIsSearching } from '../../Starter/redux/starterSlice';
 
 const Header = ({ pathname }) => {
-  const [scrolled, setScrolled] = useState(false);
-  const [showTalkBtn, setShowTalkBtn] = useState(true);
-  const navigation = useNavigate();
+	// defined hooks
+	const dispatch = useDispatch();
+	const navigation = useNavigate();
 
-  const handleTalkToStrangers = () => {
-    const hasData = JSON.parse(localStorage.getItem("userData"));
-    if (hasData) {
-      navigation("/start-searching");
-    } else {
-      navigation("/starter");
-    }
-  };
-  const handleNext = () => {
-    //handle next buttton click
-  };
-  const handleEnd = () => {
-    //handle end buttton click
-  };
+	// state
+	const [scrolled, setScrolled] = useState(false);
+	const [showTalkBtn, setShowTalkBtn] = useState(true);
 
-  // const handleHome = ()=>{
-  //   navigation('/')
-  // }
+	// selector
+	const { roomId, status, loading, isSearching, disconnecting, isNext } =
+		useSelector(starterSelector);
 
-  useEffect(() => {
-    setShowTalkBtn(
-      pathname === "/chat-dashboard" ||
-        pathname === "/start-searching" ||
-        pathname === "/starter"
-    );
-  }, [pathname]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      if (scrollTop > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+	// get users data from localstorage
+	const usersData = JSON.parse(localStorage.getItem('userData'));
 
-  return (
-    <div className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
-      <a href="/">
-        <img src={logo} alt="Zingo" className={styles.logo} />
-      </a>
-      <div className={styles.joinedUser}>
-            <img src={userIcon} alt="userIcon" className={styles.userIcon} />
-            Manish
-          </div>
-      {!showTalkBtn && (
-        <button
-          href="/starter"
-          className={styles.talkBtn}
-          onClick={handleTalkToStrangers}
-        >
-          Talk To Strangers
-        </button>
-      )}
-      {pathname === "/chat-dashboard" && (
-        <div className={styles.buttons}>
-          <button className={styles.talkBtn} onClick={handleNext}>
-            Next
-          </button>
-          <button
-            className={`${styles.talkBtn} ${styles.endBtn}`}
-            onClick={handleEnd}
-          >
-            End
-          </button>
-          {/* <button
+	const handleTalkToStrangers = () => {
+		if (usersData) {
+			navigation('/start-searching');
+		} else {
+			navigation('/starter');
+		}
+	};
+	//handle next buttton click
+	const handleNext = () => {
+		const dynamicDisconnectUser = disconnectUserHelper(dispatch);
+		dynamicDisconnectUser(roomId);
+		dispatch(setIsNext(true));
+		const value = {
+			user_id: usersData?.userId,
+			nickname: usersData.nickName,
+			gender: usersData.usersGender.toUpperCase(),
+			interested_gender: usersData.interestedGender.toUpperCase(),
+		};
+
+		const dynamicDispatchCreateStarter = startSearching(
+			dispatch,
+			navigation
+		);
+		dynamicDispatchCreateStarter(value);
+	};
+
+	const updateStatus = useCallback(
+		(roomId) => {
+			const dynamicDispatchCreateStarter = updateStatusHelper(
+				dispatch,
+				navigation
+			);
+			dynamicDispatchCreateStarter(roomId);
+		},
+		[dispatch]
+	);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			if (isSearching && status) {
+				updateStatus(roomId);
+			}
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, [status, roomId, isSearching, updateStatus]);
+
+	const handleEnd = () => {
+		const dynamicDisconnectUser = disconnectUserHelper(dispatch);
+		dynamicDisconnectUser(roomId);
+	};
+
+	// const handleHome = ()=>{
+	//   navigation('/')
+	// }
+
+	useEffect(() => {
+		setShowTalkBtn(
+			pathname === '/chat-dashboard' ||
+				pathname === '/start-searching' ||
+				pathname === '/starter'
+		);
+	}, [pathname]);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.scrollY;
+			if (scrollTop > 50) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	return (
+		<div className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+			<a href="/">
+				<img src={logo} alt="Zingo" className={styles.logo} />
+			</a>
+			{pathname === '/chat-dashboard' && (
+				<div className={styles.joinedUser}>
+					<img
+						src={userIcon}
+						alt="userIcon"
+						className={styles.userIcon}
+					/>
+					Manish
+				</div>
+			)}
+			{!showTalkBtn && (
+				<button
+					href="/starter"
+					className={styles.talkBtn}
+					onClick={handleTalkToStrangers}>
+					Talk To Strangers
+				</button>
+			)}
+			{pathname === '/chat-dashboard' && (
+				<div className={styles.buttons}>
+					<button className={styles.talkBtn} onClick={handleNext}>
+						{loading && isNext ? 'searching...' : 'Next'}
+					</button>
+					<button
+						className={`${styles.talkBtn} ${styles.endBtn}`}
+						onClick={handleEnd}>
+						{disconnecting ? 'disconnecting...' : 'End'}
+					</button>
+					{/* <button
           className={`${styles.talkBtn} ${styles.homeBtn}`}
           onClick={handleHome}
         >
           Home
         </button> */}
-        </div>
-      )}
-    </div>
-  );
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default Header;

@@ -33,7 +33,7 @@ class InitializeChatAPIView(APIView):
             member1 = user_id
 
            # Check if there's a user waiting for a match
-            waiting_user = ChatRoom.objects.filter(member2=None).first()
+            waiting_user = ChatRoom.objects.filter(member2=None,status="WAITING").first()
 
             if waiting_user:
                 # Pair the waiting user with the current user
