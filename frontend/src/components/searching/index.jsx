@@ -6,13 +6,14 @@ import { RiUserSearchLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { starterSelector } from '../Starter/redux/selector';
 import { setIsSearching, setRoomId, setStatus } from '../Starter/redux/starterSlice';
-import { startSearching, updateStatusHelper } from '../../utils/functions/dataFetch';
+import { disconnectUserHelper, startSearching, updateStatusHelper } from '../../utils/functions/dataFetch';
 
 const Searching = () => {
 	const dispatch = useDispatch();
 	const navigation = useNavigate();
 	const usersData = JSON.parse(localStorage.getItem('userData'));
 	const { roomId, status, loading, isSearching } = useSelector(starterSelector);
+
 	const handleSearch = () => {
 		dispatch(setIsSearching(true));
 		const value = {
@@ -28,8 +29,10 @@ const Searching = () => {
 		);
 		dynamicDispatchCreateStarter(value);
 	};
+
 	const handleStopSearching = () => {
-		dispatch(setIsSearching(false));
+		const dynamicDisconnectUser = disconnectUserHelper(dispatch);
+		dynamicDisconnectUser(roomId);
 	};
 	const updateStatus = useCallback(
 		(roomId) => {

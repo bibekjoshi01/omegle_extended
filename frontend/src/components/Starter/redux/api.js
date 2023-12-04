@@ -27,3 +27,8 @@ export const sendMessage = (body) =>{
 export const disconnect = (room_id) =>{
   return axios.post(`http://localhost:8000/api/chat/disconnect/${room_id}`)
 }
+
+// room info
+export const roomInfo = (room_id) =>{
+  return axios.get(`http://localhost:8000/api/chat/room-info/${room_id}`)
+}

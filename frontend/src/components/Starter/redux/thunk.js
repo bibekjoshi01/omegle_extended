@@ -1,11 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {
-	disconnect,
-	getMessages,
-	initialize,
-	sendMessage,
-	updateStatus,
-} from './api';
+import { disconnect, getMessages, initialize, roomInfo, sendMessage, updateStatus } from './api';
 
 export const createStarter = createAsyncThunk('starter', async (values) => {
 	try {
@@ -47,14 +41,21 @@ export const sendMessages = createAsyncThunk('sendMessages', async (values) => {
 });
 
 // disconnect user
-export const disconnectUser = createAsyncThunk(
-	'disconnect',
-	async (room_id) => {
-		try {
-			const response = await disconnect(room_id);
-			return { payload: response.data };
-		} catch (err) {
-			return err;
-		}
+export const disconnectUser = createAsyncThunk('disconnect', async (room_id) => {
+	try {
+		const response = await disconnect(room_id);
+		return { payload: response.data };
+	} catch (err) {
+		return err;
 	}
-);
+});
+
+// get room info
+export const getRoomInfo = createAsyncThunk('room info', async (room_id) => {
+	try {
+		const {data} = await roomInfo(room_id)
+		return data
+	} catch (err) {
+		return err;
+	}
+});

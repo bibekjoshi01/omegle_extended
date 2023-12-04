@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FaCamera, FaImage, FaMicrophone, FaHeart } from 'react-icons/fa';
 import styles from './ChatDashboard.module.scss';
 import Time from './time';
-import { getUserMessages, sendMessages, updateUserStatus } from '../Starter/redux/thunk';
+import { getRoomInfo, getUserMessages, sendMessages, updateUserStatus } from '../Starter/redux/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { starterSelector } from '../Starter/redux/selector';
 import { setStatus } from '../Starter/redux/starterSlice';
@@ -14,8 +14,8 @@ const ChatDashboard = () => {
 	const navigation = useNavigate();
 	const dispatch = useDispatch();
 
-	const { roomId, status, isSearching, isNext, messages } = useSelector(starterSelector);
-	console.log(messages, 'messages');
+	const { roomId, status, isSearching, isNext, messages, roomInfo } = useSelector(starterSelector);
+	console.log(roomInfo, 'roomInfo');
 	const usersData = JSON.parse(localStorage.getItem('userData'));
 	const [msg, setMsg] = useState('');
 
@@ -47,16 +47,20 @@ const ChatDashboard = () => {
 		[dispatch]
 	);
 
+
+	// get status of user on each 5s
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (isSearching && status) {
 				updateStatus(roomId);
 			}
-		}, 10000);
+		}, 5000);
 
 		return () => clearInterval(interval);
 	}, [status, isSearching, roomId, updateStatus]);
 
+
+	// get user message on every 5s interval
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (isSearching && roomId && !isNext) {
@@ -66,6 +70,11 @@ const ChatDashboard = () => {
 
 		return () => clearInterval(interval);
 	}, [roomId, isSearching, dispatch, isNext]);
+
+	// get room info
+	useEffect(()=>{
+		dispatch(getRoomInfo(roomId))
+	}, [dispatch])
 	return (
 		<>
 			{/* <div className={styles.joinedUser}>
@@ -74,7 +83,7 @@ const ChatDashboard = () => {
       </div> */}
 			<div className={styles.main}>
 				<div className={styles.msgArea}>
-					<p className={styles.joinedNotification}>Manish joined the chat.</p>
+					<p className={styles.joinedNotification}>{roomInfo?.name} joined the chat.</p>
 					{messages?.payload?.messages?.map((message, index) => {
 						return (
 							<div className={styles.messages} key={index}>
