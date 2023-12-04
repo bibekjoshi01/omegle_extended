@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
 
 from . serializers import (
     InitializeChatSerializer, SendChatMessageSerializer, ChatRoomSerializer, ChatRoomInfoSerializer
@@ -117,20 +118,20 @@ class SendChatMessageAPIView(generics.CreateAPIView):
             status=status.HTTP_201_CREATED
         )
 
-
 class RoomInfoInfoView(APIView):
     serializer_class = ChatRoomInfoSerializer
     permission_classes = [AllowAny]
 
     def get(self, request, room_id):
-        serializer = self.serializer_class(request=self.context)
-        validated_data = serializer.validated_data
         try:
+            # Check if room_id is a valid UUID
             chat_room = ChatRoom.objects.get(room_id=room_id)
-            return Response(validated_data, status=status.HTTP_200_OK)
+            serializer = self.serializer_class(chat_room)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ValidationError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except ChatRoom.DoesNotExist:
             return Response({'status': 'not found'}, status=status.HTTP_404_NOT_FOUND)
-
 
 
 class DisconnectChatAPIView(APIView):

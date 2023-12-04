@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . model import ChatRoom
+from . models import ChatRoom
 # Register your models here.
 
 
