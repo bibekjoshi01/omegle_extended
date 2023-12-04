@@ -36,9 +36,15 @@ export const updateStatusHelper = (dispatch, navigation) => (roomId) => {
 			if (payload?.status === 'MATCHED') {
 				navigation('/chat-dashboard');
 				dispatch(setIsNext(false));
+			}else if(payload?.status !== 'ENDED'){
+				dispatch(setIsSearching(true));
+				dispatch(setStatus(payload?.status));
+
+			}else{
+				dispatch(setIsSearching(false));
+				dispatch(setStatus(payload?.status));
+
 			}
-			dispatch(setIsSearching(true));
-			dispatch(setStatus(payload?.status));
 		})
 		.catch((error) => {
 			console.log(error, 'error');
