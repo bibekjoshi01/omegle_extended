@@ -6,6 +6,7 @@ from .views import (
     ChatRoomAPIView,
     SendChatMessageAPIView,
     DisconnectChatAPIView,
+    RoomInfoInfoView,
 )
 
 router = DefaultRouter()
@@ -24,4 +25,5 @@ urlpatterns = [
         DisconnectChatAPIView.as_view(),
         name="disconnect_chat",
     ),
+    path('room-info/<str:room_id>', RoomInfoInfoView.as_view(), name='room_info')
 ]

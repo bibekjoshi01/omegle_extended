@@ -6,9 +6,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django.shortcuts import get_object_or_404
+from django.core.exceptions import ValidationError
 
 from . serializers import (
-    InitializeChatSerializer, SendChatMessageSerializer, ChatRoomSerializer
+    InitializeChatSerializer, SendChatMessageSerializer, ChatRoomSerializer, ChatRoomInfoSerializer
 )
 from . models import ChatRoom, ChatMessage
 
@@ -117,6 +118,21 @@ class SendChatMessageAPIView(generics.CreateAPIView):
             status=status.HTTP_201_CREATED
         )
 
+class RoomInfoInfoView(APIView):
+    serializer_class = ChatRoomInfoSerializer
+    permission_classes = [AllowAny]
+
+    def get(self, request, room_id):
+        try:
+            # Check if room_id is a valid UUID
+            chat_room = ChatRoom.objects.get(room_id=room_id)
+            serializer = self.serializer_class(chat_room)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except ValidationError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        except ChatRoom.DoesNotExist:
+            return Response({'status': 'not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
 class DisconnectChatAPIView(APIView):
     permission_classes = [AllowAny]
@@ -126,4 +142,4 @@ class DisconnectChatAPIView(APIView):
         room.status = 'ENDED'
         room.ended_at = timezone.now()
         room.save()
-        return Response('Disconnected', status=status.HTTP_200_OK)
+        return Response('Disconnected', status=status.HTTP_200_OK)       

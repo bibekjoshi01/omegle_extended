@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createStarter, disconnectUser, getUserMessages, sendMessages, updateUserStatus } from './thunk';
+import { createStarter, disconnectUser, getRoomInfo, getUserMessages, sendMessages, updateUserStatus } from './thunk';
 
 const initialState = {
 	roomId: null,
@@ -11,6 +11,8 @@ const initialState = {
 	sending: false,
 	messages: [],
 	loadingMessages: false,
+	loadingRoomInfo: false,
+	roomInfo: null,
 };
 
 export const starterSlice = createSlice({
@@ -88,6 +90,18 @@ export const starterSlice = createSlice({
 		builder.addCase(disconnectUser.rejected, (state) => {
 			state.disconnecting = false;
 		});
+
+		// get room info
+		builder.addCase(getRoomInfo.pending, (state)=>{
+			state.loadingRoomInfo = true
+		})
+		builder.addCase(getRoomInfo.fulfilled, (state, {payload})=>{
+			state.roomInfo = payload
+			state.loadingRoomInfo = false
+		})
+		builder.addCase(getRoomInfo.rejected, (state)=>{
+			state.loadingRoomInfo = false
+		})
 	},
 });
 
