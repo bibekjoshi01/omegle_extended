@@ -55,6 +55,8 @@ const Searching = () => {
 		return () => clearInterval(interval);
 	}, [status, roomId, isSearching, updateStatus]);
 
+	
+
 	return (
 		<div className={styles.main}>
 			<p className={styles.usersName}>Hii {usersData?.nickName} !! </p>
