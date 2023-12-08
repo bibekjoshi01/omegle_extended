@@ -4,14 +4,14 @@
 
 .alert {
     width: 40%;
-    margin: 80px 30%;
+    margin: 30px 30%;
     background-color: #d3d3d3;
     z-index: 999;
     font-size: 16px;
     font-weight: 500;
     font-family: sans-serif;
     border-radius: 8px;
-    position: relative;
+    position: fixed;
     padding: 1.5rem 2rem;
     margin-bottom: 1rem;
     line-height: 18px;

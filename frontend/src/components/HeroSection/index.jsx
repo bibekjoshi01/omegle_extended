@@ -3,12 +3,21 @@ import banner from "../../assets/banner.jpg";
 import styles from "./HeroSection.module.scss";
 import { FaVideo } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { showAlertMsg } from "../alert/redux/alertSlice";
 
 const HeroSection = () => {
   const navigation = useNavigate();
+  const dispatch = useDispatch();
 
   const handleTalkToStrangers = () =>{
-    const hasData = JSON.parse(localStorage.getItem('userData'))
+    const hasData = JSON.parse(localStorage.getItem('userData'));
+    dispatch(showAlertMsg({
+      showAlert: true,
+      alertMsg: "Start Searching Now",
+      alertType: "info",
+    }));
+
     if(hasData){
       navigation("/start-searching")
     }else{

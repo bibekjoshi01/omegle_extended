@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { starterSelector } from '../Starter/redux/selector';
 import { setIsSearching, setRoomId, setStatus } from '../Starter/redux/starterSlice';
 import { startSearching, updateStatusHelper } from '../../utils/functions/dataFetch';
+import { showAlertMsg } from '../alert/redux/alertSlice';
 
 const Searching = () => {
 	const dispatch = useDispatch();
@@ -15,6 +16,11 @@ const Searching = () => {
 	const { roomId, status, loading, isSearching } = useSelector(starterSelector);
 	const handleSearch = () => {
 		dispatch(setIsSearching(true));
+		dispatch(showAlertMsg({
+			showAlert: true,
+			alertMsg: "Searching Started",
+			alertType: "sucess",
+		  }));
 		const value = {
 			user_id: usersData?.userId,
 			nickname: usersData.nickName,
@@ -30,6 +36,11 @@ const Searching = () => {
 	};
 	const handleStopSearching = () => {
 		dispatch(setIsSearching(false));
+		dispatch(showAlertMsg({
+			showAlert: true,
+			alertMsg: "Searching Stopped",
+			alertType: "warning",
+		  }));
 	};
 	const updateStatus = useCallback(
 		(roomId) => {
