@@ -1,0 +1,42 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+
+.alert {
+    width: 40%;
+    margin: 80px 30%;
+    background-color: #d3d3d3;
+    z-index: 999;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: sans-serif;
+    border-radius: 8px;
+    position: relative;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    line-height: 18px;
+    border: 1px solid transparent;
+}
+
+.warning {
+    background-color: rgb(245, 76, 76);
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.sucess {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.dark {
+    color: #1b1e21;
+    background-color: #d6d8d9;
+    border-color: #c6c8ca;
+}
+.info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}

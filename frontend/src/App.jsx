@@ -8,11 +8,14 @@ import { Routes, Route } from "react-router-dom";
 import Searching from "./components/searching";
 import ChatDashboard from "./components/ChatDashboard";
 import useOverflowEffect from "./utils/functions/useOverflowEffect";
+import Alert from "./components/alert";
+
 const App = () => {
   useOverflowEffect();//to manage overflowing issue
   return (
     <Provider store={store}>
       <Layout>
+       <Alert />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/starter" element={<Starter />} />
