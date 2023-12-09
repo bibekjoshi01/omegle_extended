@@ -1,13 +1,13 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/variables" as *;
 
-
-.videoCall{
+.videoCall {
   width: 500px;
   height: 500px;
-  @include position(fixed, 50%, 50%, 50%,50%, -50%, -50%);
+  @include position(fixed, 50%, 50%, 50%, 50%, -50%, -50%);
   z-index: 99999;
 }
+
 .main {
   max-width: 90rem;
   margin: 90px auto 0;
@@ -105,7 +105,7 @@
 
         .inputMsg {
           width: 100%;
-          padding: .8rem 3rem;
+          padding: 0.8rem 3rem;
           margin: 20px 0;
           letter-spacing: 0.5px;
           outline: none;

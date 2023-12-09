@@ -22,12 +22,29 @@ const Header = ({ pathname }) => {
   const [showTalkBtn, setShowTalkBtn] = useState(true);
 
   // selector
-  const { roomId, status, loading, isSearching, disconnecting, isNext } =
-    useSelector(starterSelector);
+  const {
+    roomId,
+    status,
+    roomInfo,
+    loading,
+    isSearching,
+    disconnecting,
+    isNext,
+  } = useSelector(starterSelector);
 
   // get users data from localstorage
   const usersData = JSON.parse(localStorage.getItem("userData"));
+  
+  // Getting Another UserInfo
+  const currentUserId = usersData.userId;
+  let anotherUserNickName;
 
+  if (roomInfo?.member1_id === currentUserId) {
+    anotherUserNickName = roomInfo?.member2_nickname;
+  } else {
+    anotherUserNickName = roomInfo?.member1_nickname;
+  }
+  
   const handleTalkToStrangers = () => {
     const hasUserData = JSON.parse(localStorage.getItem("userData"));
     if (hasUserData) {
@@ -78,7 +95,7 @@ const Header = ({ pathname }) => {
     const dynamicDisconnectUser = disconnectUserHelper(dispatch);
     dynamicDisconnectUser(roomId);
   };
-  
+
   useEffect(() => {
     setShowTalkBtn(
       pathname === "/chat-dashboard" ||
@@ -107,12 +124,14 @@ const Header = ({ pathname }) => {
       <a href="/">
         <img src={logo} alt="Zingo" className={styles.logo} />
       </a>
+
       {pathname === "/chat-dashboard" && (
         <div className={styles.joinedUser}>
           <img src={userIcon} alt="userIcon" className={styles.userIcon} />
-          Manish
+          {anotherUserNickName}
         </div>
       )}
+
       {!showTalkBtn && (
         <button
           href="/starter"
@@ -122,6 +141,7 @@ const Header = ({ pathname }) => {
           Talk To Strangers
         </button>
       )}
+
       {pathname === "/chat-dashboard" && (
         <div className={styles.buttons}>
           <button className={styles.talkBtn} onClick={handleNext}>
