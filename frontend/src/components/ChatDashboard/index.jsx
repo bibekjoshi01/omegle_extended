@@ -2,20 +2,27 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FaCamera, FaImage, FaMicrophone, FaHeart } from 'react-icons/fa';
 import styles from './ChatDashboard.module.scss';
 import Time from './time';
-import { getRoomInfo, getUserMessages, sendMessages, updateUserStatus } from '../Starter/redux/thunk';
+import {
+	getRoomInfo,
+	getUserMessages,
+	sendMessages,
+	updateUserStatus,
+} from '../Starter/redux/thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { starterSelector } from '../Starter/redux/selector';
 import { setStatus } from '../Starter/redux/starterSlice';
 import { updateStatusHelper } from '../../utils/functions/dataFetch';
 import { useNavigate } from 'react-router-dom';
+import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 // import userIcon from "../../assets/male.png";
 const ChatDashboard = () => {
 	// defined hooks
 	const navigation = useNavigate();
 	const dispatch = useDispatch();
 
-	const { roomId, status, isSearching, isNext, messages, roomInfo } = useSelector(starterSelector);
-	console.log(roomInfo, 'roomInfo');
+	const { roomId, status, isSearching, isNext, messages, roomInfo } =
+		useSelector(starterSelector);
+
 	const usersData = JSON.parse(localStorage.getItem('userData'));
 	const [msg, setMsg] = useState('');
 
@@ -47,7 +54,6 @@ const ChatDashboard = () => {
 		[dispatch]
 	);
 
-
 	// get status of user on each 5s
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -58,7 +64,6 @@ const ChatDashboard = () => {
 
 		return () => clearInterval(interval);
 	}, [status, isSearching, roomId, updateStatus]);
-
 
 	// get user message on every 5s interval
 	useEffect(() => {
@@ -72,15 +77,59 @@ const ChatDashboard = () => {
 	}, [roomId, isSearching, dispatch, isNext]);
 
 	// get room info
-	useEffect(()=>{
-		dispatch(getRoomInfo(roomId))
-	}, [dispatch])
+	useEffect(() => {
+		dispatch(getRoomInfo(roomId));
+	}, [dispatch]);
+
+	const videoCall = async (element) => {
+		const appId = 2100704118;
+		const serverSecret = "3880a26f11161f280762b065f0f8e211"
+		const kit = ZegoUIKitPrebuilt.generateKitTokenForTest(
+			appId,
+			serverSecret,
+			roomId,
+			Date.now().toString(),
+			usersData?.nickName
+		);
+
+		const zc = ZegoUIKitPrebuilt.create(kit)
+	  if (zc) {
+			zc.joinRoom({
+				container: element,
+				scenario: {
+					mode: ZegoUIKitPrebuilt.OneONoneCall,
+				},
+				showPreJoinView: false,
+				showScreenSharingButton: false,
+				showTurnOffRemoteCameraButton: false,
+				showTextChat: false,
+				showUserList: false,
+				showRoomDetailsButton: false,
+				showLeavingView: false,
+				showAudioVideoSettingsButton: false,
+				turnOnCameraWhenJoining: true,
+				showMyMicrophoneToggleButton: true,
+				showMyCameraToggleButton: false,
+				lowerLeftNotification: {
+					showUserJoinAndLeave: false,
+					showTextChat: false,
+				},
+				layout: "Grid",
+				
+			});
+		} else {
+			console.error('ZegoUIKitPrebuilt is undefined. Cannot initiate video call.');
+		}
+	};
 	return (
 		<>
 			{/* <div className={styles.joinedUser}>
         <img src={userIcon} alt="userIcon" className={styles.userIcon} />
         Manish
       </div> */}
+			<div className={styles.videoCall} ref={videoCall}>
+
+			</div>
 			<div className={styles.main}>
 				<div className={styles.msgArea}>
 					<p className={styles.joinedNotification}>{roomInfo?.name} joined the chat.</p>
