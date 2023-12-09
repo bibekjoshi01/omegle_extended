@@ -12,9 +12,11 @@
   @include xs {
     min-height: 470px;
   } 
+  
   @include sm {
     min-height: 470px;
   }
+
   @include md {
     min-height: 450px;
   }
@@ -22,6 +24,7 @@
   .usersName {
     font-size: 2.5rem;
   }
+
   .searchingPage {
     // @include position(absolute, 50%, null, 50%, null, -50%, -50%);
     padding: 15px 20px;
@@ -34,8 +37,10 @@
     color: $light;
     font-weight: $weight-medium;
     transition: all 0.3s;
+
     &:hover {
       background: $primary-light;
     }
+
   }
 }

@@ -1,0 +1,41 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  div {
+    text-align: center;
+
+    h1 {
+      font-size: 5rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 50px;
+    }
+
+    .back-to-home-btn {
+      @include font(inherit, $font-base, $weight-semibold);
+      padding: 15px 30px;
+      max-width: 250px;
+      text-decoration: none;
+      color: $light;
+      background-color: $secondary-light;
+      border-radius: $border-xs;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $primary-light;
+        outline: none;
+      }
+    }
+  }
+}

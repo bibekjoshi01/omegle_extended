@@ -7,9 +7,9 @@
   box-shadow: 0 0 3px #ccc;
   padding: 2rem;
   margin: 100px auto 0px;
- 
+
   p {
-    @include font(inherit, 2.1rem, $weight-semibold);
+    @include font(inherit, 2rem, $weight-semibold);
     text-align: end;
   }
 
@@ -103,7 +103,8 @@
       width: 100%;
 
       .btn {
-        height: 50px;
+        @include flex(center, center, null, 10px);
+        height: 5rem;
         width: 15rem;
         color: $light;
         font-weight: $weight-semibold;
