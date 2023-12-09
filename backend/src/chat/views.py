@@ -115,9 +115,15 @@ class SendChatMessageAPIView(APIView):
 
             try:
                 chat_room = ChatRoom.objects.get(room_id=room_id)
+                if chat_room.status != "MATCHED":
+                    return Response(
+                        {"message": "Chat room has been ended."},
+                        status=status.HTTP_404_NOT_FOUND,
+                    )
+
             except ChatRoom.DoesNotExist:
                 return Response(
-                    {"message": "Chat room not found."}, status=status.HTTP_NOT_FOUND
+                    {"message": "Chat room not found."}, status=status.HTTP_404_NOT_FOUND
                 )
 
             # Check if the initiator belongs to the specified chat room

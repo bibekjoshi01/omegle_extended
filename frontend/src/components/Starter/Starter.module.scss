@@ -14,10 +14,10 @@
   }
 
   .form {
+    @include flex(flex-start, flex-start, column, 5rem);
     width: 60%;
     margin-left: 20%;
     padding: 3rem;
-    @include flex(flex-start, flex-start, column, 5rem);
 
     @include lg {
       width: 100%;

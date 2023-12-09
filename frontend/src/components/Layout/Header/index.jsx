@@ -36,7 +36,7 @@ const Header = ({ pathname }) => {
   const usersData = JSON.parse(localStorage.getItem("userData"));
   
   // Getting Another UserInfo
-  const currentUserId = usersData.userId;
+  const currentUserId = usersData?.userId;
   let anotherUserNickName;
 
   if (roomInfo?.member1_id === currentUserId) {

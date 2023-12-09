@@ -1,22 +1,26 @@
 import React from "react";
 import styles from "./Features.module.scss";
 
+import chatAppIcon from "../../assets/chat_app.svg";
+import videoChatIcon from "../../assets/video_chat.svg";
+import studentIcon from "../../assets/student.svg";
+
 function Features() {
   const featuresData = [
     {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/chat-app.svg",
+      icon: chatAppIcon,
       title: "Chat Across Continents",
       description:
         "Connect with intriguing individuals worldwide and let the magic of chat bring new friendships to life.",
     },
     {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/video-chat.svg",
+      icon: videoChatIcon,
       title: "See Beyond Words",
       description:
         "Connect not just through words but with the power of face-to-face conversations.",
     },
     {
-      icon: "https://omegle.uk.com/omegle.uk.com/assets/icons/student.svg",
+      icon: studentIcon,
       title: "Zingo Campus: Student Network",
       description:
         "Share experiences, make lasting connections within the vibrant Zingo student community.",
