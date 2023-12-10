@@ -40,7 +40,11 @@
   border: var(--border);
   border-radius: 4px;
   background: var(--msger-bg);
-
+  @include sm{
+    margin-top: 70px;
+    margin-bottom:10px;
+    height: calc(100% - 70px);
+  }
   &-header {
     @include flex(center, space-between, null, 2rem);
     padding: 15px 20px;

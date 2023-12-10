@@ -8,9 +8,11 @@
   max-width: 1200px;
   width: 100%;
   padding: 8px 16px;
+
   @include sm {
     padding: 8px;
   }
+
   border-radius: $border-md;
   background: $light;
   border: 1px solid $light;
@@ -24,11 +26,13 @@
   }
 
   z-index: 9;
+
   .logo {
     width: 15rem;
     height: auto;
     cursor: pointer;
   }
+
   .joinedUser {
     @include flex(center, center, null, 10px);
     font-size: 2.2rem;
@@ -36,6 +40,7 @@
     cursor: pointer;
     z-index: 100;
     height: 40px;
+
     .userIcon {
       height: 3rem;
       border: 0.1px solid $secondary-light;
@@ -43,6 +48,7 @@
       border-radius: 50%;
     }
   }
+
   .talkBtn {
     @include font(inherit, 1.5rem, 600);
     padding: 1rem 3rem;
@@ -59,17 +65,27 @@
       background-color: $primary-light;
       outline: none;
     }
+
+    @include sm {
+      font-size: 1.8rem;
+      padding: 1.7rem 2rem;
+
+    }
   }
+
   .buttons {
     display: flex;
     column-gap: 10px;
+
     .endBtn {
       background-color: $primary-light;
       transition: all 0.3s ease-in-out;
+
       &:hover {
         background-color: $secondary-light;
       }
     }
+
     // .homeBtn{
     //   background-color: $tertiary-light;
     //   &:hover{

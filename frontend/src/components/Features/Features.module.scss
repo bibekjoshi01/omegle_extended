@@ -38,6 +38,9 @@
 
     .title {
       font-size: 1.5rem;
+      @include sm{
+        font-size: 1.7rem;
+      }
       margin-bottom: 10px;
       color: #000;
       font-weight: 400;
@@ -45,6 +48,9 @@
 
     .description {
       font-size: 1.2rem;
+      @include sm{
+        font-size: 1.4rem;
+      }
       color: #747474;
       line-height: 1.5em;
     }
