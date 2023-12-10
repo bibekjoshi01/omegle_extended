@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Load environment variables
-const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL
+const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
 // initialize searching
 export const initialize = (body) => {
