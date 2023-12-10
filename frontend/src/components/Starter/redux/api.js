@@ -1,34 +1,34 @@
-import axios from "axios"
+import axios from "axios";
 
+// Load environment variables
+const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL
 
 // initialize searching
-export const initialize = (body) =>{
-  return axios.post("http://localhost:8000/api/chat/initialize", body)
-}
-
+export const initialize = (body) => {
+  return axios.post(`${REACT_APP_BASE_URL}/initialize`, body);
+};
 
 // update status
-export const updateStatus = (room_id) =>{
-  return axios.get(`http://localhost:8000/api/chat/status/${room_id}`)
-}
+export const updateStatus = (room_id) => {
+  return axios.get(`${REACT_APP_BASE_URL}/status/${room_id}`);
+};
 
 // get messages
-export const getMessages = (room_id) =>{
-  return axios.get(`http://localhost:8000/api/chat/messages/${room_id}`)
-}
+export const getMessages = (room_id) => {
+  return axios.get(`${REACT_APP_BASE_URL}/messages/${room_id}`);
+};
 
 // send message
-export const sendMessage = (body) =>{
-  return axios.post(`http://localhost:8000/api/chat/send/message`, body)
-}
+export const sendMessage = (body) => {
+  return axios.post(`${REACT_APP_BASE_URL}/send/message`, body);
+};
 
-
-// disconnect 
-export const disconnect = (room_id) =>{
-  return axios.post(`http://localhost:8000/api/chat/disconnect/${room_id}`)
-}
+// disconnect
+export const disconnect = (room_id) => {
+  return axios.post(`${REACT_APP_BASE_URL}/disconnect/${room_id}`);
+};
 
 // room info
-export const roomInfo = (room_id) =>{
-  return axios.get(`http://localhost:8000/api/chat/room-info/${room_id}`)
-}
+export const roomInfo = (room_id) => {
+  return axios.get(`${REACT_APP_BASE_URL}/room-info/${room_id}`);
+};

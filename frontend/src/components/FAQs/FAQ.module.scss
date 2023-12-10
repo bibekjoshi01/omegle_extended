@@ -1,3 +1,6 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+
 .main {
   padding: 5rem;
   max-width: 120rem;
@@ -20,6 +23,9 @@
 
   .question {
     font-size: 1.5rem;
+    @include sm{
+      font-size: 1.7rem;
+    }
     font-weight: 500;
     margin-bottom: 10px;
     border-bottom: 1.5px solid #7e7d7d;
@@ -27,7 +33,7 @@
     color: rgb(40, 40, 40);
     position: relative;
     cursor: pointer;
-    
+
     .caret {
       position: absolute;
       right: 0;

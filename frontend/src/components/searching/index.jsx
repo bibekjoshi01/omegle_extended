@@ -1,15 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 import styles from "./Searching.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { createStarter, updateUserStatus } from "../Starter/redux/thunk";
 import { RiUserSearchLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { starterSelector } from "../Starter/redux/selector";
-import {
-  setIsSearching,
-  setRoomId,
-  setStatus,
-} from "../Starter/redux/starterSlice";
+import { setIsSearching } from "../Starter/redux/starterSlice";
 import {
   disconnectUserHelper,
   startSearching,
@@ -19,13 +14,14 @@ import {
 const Searching = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
+
   const usersData = JSON.parse(localStorage.getItem("userData"));
   const { roomId, status, loading, isSearching } = useSelector(starterSelector);
 
   const handleSearch = () => {
     dispatch(setIsSearching(true));
+
     const value = {
-      user_id: usersData?.userId,
       nickname: usersData.nickName,
       gender: usersData.usersGender.toUpperCase(),
       interested_gender: usersData.interestedGender.toUpperCase(),
@@ -39,6 +35,7 @@ const Searching = () => {
     const dynamicDisconnectUser = disconnectUserHelper(dispatch);
     dynamicDisconnectUser(roomId);
   };
+
   const updateStatus = useCallback(
     (roomId) => {
       const dynamicDispatchCreateStarter = updateStatusHelper(
@@ -82,4 +79,5 @@ const Searching = () => {
     </div>
   );
 };
+
 export default Searching;

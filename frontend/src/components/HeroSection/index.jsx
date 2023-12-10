@@ -7,15 +7,15 @@ import { useNavigate } from "react-router-dom";
 const HeroSection = () => {
   const navigate = useNavigate();
 
-  const handleTalkToStrangers = () =>{
-    const hasUserData = JSON.parse(localStorage.getItem('userData'))
-    if(hasUserData){
-      navigate("/start-searching")
-    }else{
-      navigate('/starter')
+  const handleTalkToStrangers = () => {
+    const hasUserData = JSON.parse(localStorage.getItem("userData"));
+    if (hasUserData) {
+      navigate("/start-searching");
+    } else {
+      navigate("/starter");
     }
-  }
-  
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.left}>
@@ -25,16 +25,15 @@ const HeroSection = () => {
         </h1>
         <div className={styles.description}>
           <p>
-            More than an app; it's the doorway to a world of friendships
-            waiting to be discovered. Start chatting, start connecting, start
-            your Zingo journey today!
+            More than an app; it's the doorway to a world of friendships waiting
+            to be discovered. Start chatting, start connecting, start your Zingo
+            journey today!
           </p>
         </div>
         <div className={styles.btn}>
           <button className={styles.talkBtn} onClick={handleTalkToStrangers}>
             <FaVideo className={styles.icon} />{" "}
             <span className={styles.btnText}>Talk To Strangers</span>{" "}
-
           </button>
         </div>
       </div>

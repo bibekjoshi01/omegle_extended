@@ -4,6 +4,12 @@
 .container {
   @include flex(flex-start, center, row, null);
   padding: 5rem;
+
+  @include sm {
+    padding: 2rem;
+
+  }
+
   margin: 150px auto 50px;
   max-width: 120rem;
 
@@ -16,6 +22,7 @@
   .right {
     width: 50%;
     @include flex(flex-start, flex-end, row, 50px);
+
     @include lg {
       width: 100%;
       margin-top: 100px;
@@ -27,6 +34,7 @@
       border-radius: 4px;
       max-width: 50rem;
       height: auto;
+
       @include lg {
         max-width: 100%;
       }
@@ -37,11 +45,14 @@
     width: 50%;
     text-align: center;
     position: relative;
+
     @include lg {
       width: 100%;
     }
+
     h1 {
       @include font(inherit, $font-4xl, lighter);
+
       text-align: left;
       margin-bottom: 10px;
       text-transform: capitalize;
@@ -74,7 +85,7 @@
         transition: background-color 0.3s ease;
         border: none;
         cursor: pointer;
-        
+
         &:hover {
           background-color: $primary-light;
           outline: none;

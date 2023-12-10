@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Starter = () => {
   const [step, setStep] = useState(1);
   const navigation = useNavigate();
+
   const [usersData, setUsersData] = useState({
     usersGender: "",
     interestedGender: "",
@@ -20,7 +21,6 @@ const Starter = () => {
     setUsersData({
       ...usersData,
       [name]: value,
-      userId: Math.floor(Math.random() * 10),
     });
   };
 
