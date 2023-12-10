@@ -18,7 +18,7 @@ SECRET_KEY = 'django-insecure-2-hn!=#g1f7hb=o^-0f4d@858*m)2xs4v3b^luo1jko@s2cm=f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS=['.localhost', '192.168.1.64', ]
+ALLOWED_HOSTS=['.localhost', '192.168.1.64', '.zingo.gib.com.np']
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS=['http://localhost:3000']
 # CORS_ALLOWED_ALL_ORIGINS=True
