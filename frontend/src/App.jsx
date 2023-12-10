@@ -1,26 +1,35 @@
-import Home from "./components/HomePage";
+import React, { useEffect } from "react";
 import Layout from "./components/Layout";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
-import Starter from "./components/Starter";
-import ContactUs from "./components/ContactUs";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import Searching from "./components/searching";
-import ChatDashboard from "./components/ChatDashboard";
-import PageNotFound from "./components/PageNotFound";
+import AppRoutes from "./routes/PublicRoutes";
 import useOverflowEffect from "./utils/functions/useOverflowEffect";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { starterSelector } from "./components/Starter/redux/selector";
+// import { disconnectUser } from "./components/Starter/redux/thunk";
 
 const App = () => {
-  const hasUserData = localStorage.getItem("userData");
+  // const dispatch = useDispatch();
   useOverflowEffect(); //to manage overflowing issue
   const navigate = useNavigate();
+  // const { roomId } = useSelector(starterSelector);
+
+  const hasUserData = localStorage.getItem("userData");
+
+  // useEffect(() => {
+  //   if (roomId !== null) {
+  //     window.location.reload(() => {
+  //       dispatch(disconnectUser(roomId))
+  //         .unwrap()
+  //         .catch((error) => {
+  //           console.log(error, "error while disconnecting !");
+  //         });
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
-    // Check if the URL path is "/starter" and user data is present
     const path = window.location.pathname;
     if (path === "/starter" && hasUserData) {
-      // Redirect to another route (e.g., "/start-searching")
       navigate("/start-searching");
     } else if (path === "/start-searching" && !hasUserData) {
       navigate("/starter");
@@ -28,20 +37,9 @@ const App = () => {
   }, [hasUserData, navigate]);
 
   return (
-    <Provider store={store}>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-          <Route path="/starter" element={<Starter />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/start-searching" element={<Searching />} />
-          <Route path="/chat-dashboard" element={<ChatDashboard />} />
-
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </Layout>
-    </Provider>
+    <Layout>
+      <AppRoutes />
+    </Layout>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   disconnectUser,
   updateUserStatus,
 } from "../Starter/redux/thunk";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { starterSelector } from "../Starter/redux/selector";
 import { setStatus } from "../Starter/redux/starterSlice";
@@ -27,8 +28,7 @@ const ChatDashboard = () => {
   // custom states
   const [msg, setMsg] = useState("");
   const [disconnected, setDisconnected] = useState(false);
-  const { roomId, status, isSearching, isNext, messages, roomInfo } =
-    useSelector(starterSelector);
+  const { roomId, messages, roomInfo } = useSelector(starterSelector);
   const usersData = JSON.parse(localStorage.getItem("userData"));
 
   // Getting Another UserInfo
@@ -121,6 +121,10 @@ const ChatDashboard = () => {
   // );
 
   useEffect(() => {
+    dispatch(getRoomInfo(roomId));
+  }, [roomId, dispatch]);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       if (!disconnected) {
         dispatch(getRoomInfo(roomId));
@@ -203,7 +207,9 @@ const ChatDashboard = () => {
       <section className={styles.msger}>
         <header className={styles["msger-header"]}>
           <div className={styles.logo}>
-            <img src={logo} alt="userIcon" className={styles.siteLogo} />
+            <Link to="/">
+              <img src={logo} alt="userIcon" className={styles.siteLogo} />
+            </Link>
           </div>
           <div className={styles.joinedUser}>
             <img src={userIcon} alt="userIcon" className={styles.userIcon} />

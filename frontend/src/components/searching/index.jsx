@@ -14,13 +14,14 @@ import {
 const Searching = () => {
   const dispatch = useDispatch();
   const navigation = useNavigate();
+
   const usersData = JSON.parse(localStorage.getItem("userData"));
   const { roomId, status, loading, isSearching } = useSelector(starterSelector);
 
   const handleSearch = () => {
     dispatch(setIsSearching(true));
+
     const value = {
-      // user_id: usersData?.userId,
       nickname: usersData.nickName,
       gender: usersData.usersGender.toUpperCase(),
       interested_gender: usersData.interestedGender.toUpperCase(),
