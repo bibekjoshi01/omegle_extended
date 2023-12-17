@@ -5,6 +5,7 @@ import { RiUserSearchLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { starterSelector } from "../Starter/redux/selector";
 import { setIsSearching } from "../Starter/redux/starterSlice";
+import Loader from '../Loader'
 import {
   disconnectUserHelper,
   startSearching,
@@ -62,6 +63,7 @@ const Searching = () => {
       <p className={styles.usersName}>Hii {usersData?.nickName} !! </p>
       {loading && isSearching ? (
         <>
+          <Loader isInbutton={true}/>
           <button
             onClick={handleStopSearching}
             className={styles.searchingPage}
