@@ -113,18 +113,21 @@
       }
 
       .image {
-
+        margin: 5px 0;
         // img {
         .lottie {
           max-width: 55rem;
-          height: auto;
+          aspect-ratio: 1/1;
           mix-blend-mode: multiply;
+          @include lg{
+            max-width: 35rem;
+          }
           @include md {
-            max-width: 45rem;
+            max-width: 25rem;
           }
 
           @include sm {
-            max-width: 30rem;
+            max-width: 22rem;
           }
         }
       }
