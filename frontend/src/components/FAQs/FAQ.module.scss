@@ -2,50 +2,96 @@
 @use "../../styles/variables" as *;
 
 .main {
-  padding: 5rem;
-  max-width: 120rem;
+  padding: 3rem 5rem;
+  max-width: 100rem;
   margin: 0 auto;
 
   h1 {
-    font-size: 2rem;
+    font-size: 3.5rem;
+    padding-bottom: 3.5rem;
+    text-align: center;
+
   }
 }
 
 .faqList {
   display: grid;
   gap: 2rem;
-}
 
-.faqItem {
-  background-color: #fff;
-  padding: 0.5rem;
-  border-radius: 8px;
+  .redGradient {
+    background: radial-gradient(50% 50% at 50% 50%, rgb(244, 128, 212) 39.0625%, rgba(244, 128, 212, 0) 100%);
+    filter: blur(130px);
+    opacity: 0.5;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    right: -25%;
+    top: -100px;
+    width: 44%;
+    height: 50rem;
+  }
 
-  .question {
-    font-size: 1.5rem;
-    @include sm{
-      font-size: 1.7rem;
+  .blueGradient {
+    background: radial-gradient(50% 50% at 50% 50%, rgb(69, 201, 193) 39.0625%, rgba(69, 201, 193, 0) 100%);
+    filter: blur(130px);
+    opacity: 0.5;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    position: fixed;
+    left: -25%;
+    top: 300px;
+    width: 44%;
+    height: 50rem;
+  }
+
+  .faqItem {
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 10px;
+    background-color: rgb(246, 244, 255);
+    overflow-y: hidden;
+    max-height: 80px;
+    @include md {
+      max-height: 60px;
     }
-    font-weight: 500;
-    margin-bottom: 10px;
-    border-bottom: 1.5px solid #7e7d7d;
-    padding-bottom: 24px;
-    color: rgb(40, 40, 40);
-    position: relative;
-    cursor: pointer;
+    transform-origin: top;
+    transition: transform 0.5s ease-out, max-height 0.5s ease-out;
 
-    .caret {
-      position: absolute;
-      right: 0;
+    .question {
+      font-size: 1.8rem;
+      font-weight: 900;
+
+      @include sm {
+        font-size: 1.7rem;
+      }
+
+      font-weight: 500;
+      margin-bottom: 10px;
+      border-bottom: 1.5px solid #7e7d7d;
+      padding-bottom: 30px;
+      color: rgb(21, 17, 69);
+      position: relative;
       cursor: pointer;
-      display: inline;
+
+      .caret {
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        display: inline;
+      }
+    }
+
+    .answer {
+      font-size: 1.7rem;
+      padding-top: 5px;
+      line-height: 1.5;
+      color: #747474;
+      cursor: pointer;
     }
   }
 
-  .answer {
-    font-size: 1.5rem;
-    padding-top: 5px;
-    color: #747474;
-    cursor: pointer;
+  .faqItemExpanded {
+    max-height: 230px;
+    transform: scaleY(1);
   }
 }

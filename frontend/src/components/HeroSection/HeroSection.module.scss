@@ -53,6 +53,18 @@
     h1 {
       @include font(inherit, $font-4xl, lighter);
 
+      &::first-letter {
+        font-size: 7rem;
+      }
+
+      @include md {
+        font-size: 4rem;
+
+        &::first-letter {
+          font-size: 5rem;
+        }
+      }
+
       text-align: left;
       margin-bottom: 10px;
       text-transform: capitalize;
@@ -61,6 +73,7 @@
       span {
         font-weight: $weight-bold;
       }
+
     }
 
     .description {
@@ -68,6 +81,10 @@
         text-align: left;
         font-size: $font-lg;
         color: $grey-600;
+        line-height: 1.5em;
+        @include md{
+          fone-size: $font-sm;
+        }
       }
     }
 
@@ -77,11 +94,11 @@
         @include font(inherit, $font-base, $weight-semibold);
         position: absolute;
         margin-top: 50px;
-        padding: 15px 30px;
+        padding: 3rem;
         text-decoration: none;
         color: $light;
         background-color: $secondary-light;
-        border-radius: $border-xs;
+        border-radius: $border-sm;
         transition: background-color 0.3s ease;
         border: none;
         cursor: pointer;

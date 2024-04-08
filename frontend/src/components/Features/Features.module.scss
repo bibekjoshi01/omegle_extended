@@ -4,55 +4,130 @@
 .main {
   padding: 5rem;
   max-width: 120rem;
-  margin: 0 auto;
+  margin: 18rem auto;
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    justify-content: center;
+  h1 {
+    font-size: 3.5rem;
+    padding-bottom: 1rem;
+    text-align: center;
   }
 
-  .card {
-    background-color: #fff;
-    padding: 5rem 2rem;
-    border-radius: 8px;
+  p {
+    font-size: 2rem;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    border: 1px solid #fff;
-    transition: background-color 0.5s ease;
+    color: #747474;
+  }
 
-    &:hover{
-      border: 1px solid $secondary-light;
-    }
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+    margin-top: 8rem;
 
-    .icon {
-      margin-bottom: 15px;
 
-      img {
-        width: 5rem;
-        height: 5rem;
+    .card {
+      background-color: #fff;
+      padding: 4rem 3rem;
+      width: 100%;
+      border-radius: 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8rem;
+
+      @include lg {
+        flex-direction: column;
+        gap: 3rem;
       }
-    }
 
-    .title {
-      font-size: 1.5rem;
-      @include sm{
-        font-size: 1.7rem;
+      &:hover {
+        border: 1px solid #d9e1ff;
       }
-      margin-bottom: 10px;
-      color: #000;
-      font-weight: 400;
-    }
 
-    .description {
-      font-size: 1.2rem;
-      @include sm{
-        font-size: 1.4rem;
+      .texts {
+        margin: auto 0;
+
+        .title {
+          font-size: 3.5rem;
+          font-weight: 900;
+          color: rgb(8, 10, 71);
+          text-align: left;
+          margin-bottom: 20px;
+
+          @include sm {
+            font-size: 2rem;
+          }
+        }
+
+        .description {
+          font-size: 2rem;
+          text-align: left;
+
+          @include sm {
+            font-size: 1.5rem;
+          }
+
+          color: #747474;
+          line-height: 1.5em;
+        }
+
+        .talkButton {
+          width: 20rem;
+          min-height: 50px;
+          border-radius: 10px;
+          overflow: hidden;
+          cursor: pointer;
+          position: relative;
+          margin-top: 20px;
+          .circle {
+            height: 100%;
+            width: 100%;
+            -webkit-clip-path: circle(0% at 100% 0%);
+            clip-path: circle(0% at 100% 0%);
+            position: absolute;
+            right: 0;
+            transition: all 0.3s ease-in-out;
+          }
+
+          &:hover .circle {
+            -webkit-clip-path: circle(100%);
+            clip-path: circle(100%);
+          }
+
+          p {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: rgb(8, 10, 71);
+            padding: 22px 25px;
+            position: relative;
+
+            @include sm {
+              font-size: 12px;
+              padding: 20px 10px;
+            }
+          }
+        }
       }
-      color: #747474;
-      line-height: 1.5em;
+
+      .image {
+
+        // img {
+        .lottie {
+          max-width: 55rem;
+          height: auto;
+          mix-blend-mode: multiply;
+          @include md {
+            max-width: 45rem;
+          }
+
+          @include sm {
+            max-width: 30rem;
+          }
+        }
+      }
     }
   }
 }

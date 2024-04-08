@@ -40,14 +40,16 @@ function FAQ() {
   const toggleAnswer = (index) => {
     const CurrentCaret = caretRefs.current[index];
     const PreviousCaret = caretRefs.current[expandedIndex];
-    console.log(PreviousCaret);
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+    console.log("previous: ", PreviousCaret);
+    console.log("Current : ", CurrentCaret);
+    console.log("Expanded: ", expandedIndex);
     if (PreviousCaret) {
       PreviousCaret.style.transform =
         expandedIndex === index ? "rotate(-180deg)" : "rotate(0deg)";
       PreviousCaret.style.transition = "0.5s ease-in-out";
       PreviousCaret.parentNode.parentNode.style.borderBottom =
-        "1.5px solid #7e7d7d";
+        expandedIndex === index ? "2.5px solid #000" : "1.5px solid #7e7d7d";
       PreviousCaret.parentNode.style.color = "rgb(40, 40, 40)";
     }
     if (CurrentCaret) {
@@ -55,7 +57,7 @@ function FAQ() {
         expandedIndex === index ? "rotate(0deg)" : "rotate(180deg)";
       CurrentCaret.style.transition = "0.5s ease-in-out";
       CurrentCaret.parentNode.parentNode.style.borderBottom =
-        "1.5px solid #000";
+        expandedIndex === index ? "1.5px solid #7e7d7d" : "2.5px solid #000";
       CurrentCaret.parentNode.style.color = "#000";
     }
   };
@@ -63,9 +65,19 @@ function FAQ() {
   return (
     <section className={styles.main}>
       <div className={styles.faqList}>
-        <h1>FAQS</h1>
+        <h1>FAQs</h1>
+        <div className={styles.blueGradient}>
+        
+        </div>
+        <div className={styles.redGradient}>
+
+        </div>
         {faqs.map((faq, index) => (
-          <div key={index} className={styles.faqItem}>
+          <div
+            key={index}
+            className={`${styles.faqItem} ${expandedIndex === index && styles.faqItemExpanded}`}
+            
+          >
             <div
               className={styles.question}
               onClick={() => toggleAnswer(index)}
@@ -75,9 +87,7 @@ function FAQ() {
                 question={faq.question}
               />
             </div>
-            {expandedIndex === index && (
-              <p className={styles.answer}>{faq.answer}</p>
-            )}
+            <p className={styles.answer}>{faq.answer}</p>
           </div>
         ))}
       </div>

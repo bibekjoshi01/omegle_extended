@@ -7,7 +7,8 @@
   flex-wrap: wrap;
   max-width: 1200px;
   width: 100%;
-  padding: 8px 16px;
+  padding: 10px 16px;
+  backdrop-filter: blur(2px);
 
   @include sm {
     padding: 8px;
@@ -51,7 +52,7 @@
 
   .talkBtn {
     @include font(inherit, 1.5rem, 600);
-    padding: 1rem 3rem;
+    padding: 1.5rem 3rem;
     text-decoration: none;
     color: #fff;
     background-color: $secondary-light;
